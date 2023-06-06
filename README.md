@@ -31,7 +31,7 @@ conda install -c conda-forge matplotlib tqdm timm einops esri mmcv-full esri mms
 
 We use the raw [KITTI dataset](http://www.cvlibs.net/download.php?file=raw_data_downloader.zip) and specifically follow the instructions of [Monodepth2](https://github.com/nianticlabs/monodepth2)
 
-When testing you need to downlaod the cityscape foggy dataset, the drivingstereo weather dataset (here), and the entire Nuscenens dataset (here). The splitds for the test have been provided. I dont believe I can legally provide the cityscape or the nuscenes files (dont need to for the drvivng stereo). Check so that I can. 
+When testing you need to downlaod the [Cityscape foggy dataset](https://www.cityscapes-dataset.com/downloads/), the [DrivingStereo weather dataset](https://drivingstereo-dataset.github.io/), and the entire [Nuscenens dataset](https://www.nuscenes.org/nuscenes#download). The splits for the test have been provided. I dont believe I can legally provide the cityscape or the nuscenes files (dont need to for the drvivng stereo). Check so that I can. 
 
 ## Creating Augmentations For Any Dataset
 
