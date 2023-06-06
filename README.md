@@ -10,7 +10,7 @@
 https://user-images.githubusercontent.com/51883968/221583053-4819d852-a74e-4a93-a3b5-172422142d1a.mp4
 
 
-## Install
+## Installation Setup
 
 The models were trained using CUDA 11.1, Python 3.7.x (conda environment), and PyTorch 1.8.0.
 
@@ -24,7 +24,7 @@ conda activate my_env
 Install prerequisite packages listed in requirements.txt:
 
 ```bash
-pip3 install -r requirements.txt
+conda install -c conda-forge matplotlib tqdm timm einops esri mmcv-full esri mmsegmentation
 ```
 
 ## Datasets
