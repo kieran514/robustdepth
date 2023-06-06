@@ -131,10 +131,10 @@ class MonodepthOptions:
                                  help="weight for proxy supervision",
                                  default=0.001)
         self.parser.add_argument("--teacher",
-                                 help="if set, we use depth hints",
+                                 help="if set, we use augmeted images during learning",
                                  action="store_true")
         self.parser.add_argument("--ViT",
-                                 help="if set, use monovitt depth netwrok",
+                                 help="if set, use monovit depth network",
                                  action="store_true")
 
         self.parser.add_argument("--split",
