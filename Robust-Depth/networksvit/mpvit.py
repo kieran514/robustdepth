@@ -1,16 +1,3 @@
-# --------------------------------------------------------------------------------
-# MPViT: Multi-Path Vision Transformer for Dense Prediction
-# Copyright (c) 2022 Electronics and Telecommunications Research Institute (ETRI).
-# All Rights Reserved.
-# Written by Youngwan Lee
-# This source code is licensed(Dual License(GPL3.0 & Commercial)) under the license found in the
-# LICENSE file in the root directory of this source tree.
-# --------------------------------------------------------------------------------
-# References:
-# timm: https://github.com/rwightman/pytorch-image-models/tree/master/timm
-# CoaT: https://github.com/mlpc-ucsd/CoaT
-# --------------------------------------------------------------------------------
-
 
 import numpy as np
 import math
@@ -81,7 +68,6 @@ class Mlp(nn.Module):
         x = self.drop(x)
         return x
 
-
 class Conv2d_BN(nn.Module):
     def __init__(
         self,
@@ -97,8 +83,6 @@ class Conv2d_BN(nn.Module):
         norm_cfg=dict(type="BN"),
     ):
         super().__init__()
-        # self.add_module('c', torch.nn.Conv2d(
-        #     a, b, ks, stride, pad, dilation, groups, bias=False))
         self.conv = torch.nn.Conv2d(
             in_ch, out_ch, kernel_size, stride, pad, dilation, groups, bias=False
         )
@@ -108,7 +92,6 @@ class Conv2d_BN(nn.Module):
         torch.nn.init.constant_(self.bn.bias, 0)
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                # Note that there is no bias due to BN
                 fan_out = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
                 m.weight.data.normal_(mean=0.0, std=np.sqrt(2.0 / fan_out))
 
@@ -139,8 +122,6 @@ class DWConv2d_BN(nn.Module):
         norm_cfg=dict(type="BN"),
     ):
         super().__init__()
-
-        # dw
         self.dwconv = nn.Conv2d(
             in_ch,
             out_ch,
@@ -150,7 +131,6 @@ class DWConv2d_BN(nn.Module):
             groups=out_ch,
             bias=False,
         )
-        # pw-linear
         self.pwconv = nn.Conv2d(out_ch, out_ch, 1, 1, 0, bias=False)
         self.bn = build_norm_layer(norm_cfg, out_ch)[1]
         self.act = act_layer() if act_layer is not None else nn.Identity()
@@ -174,7 +154,6 @@ class DWConv2d_BN(nn.Module):
 
         return x
 
-
 class DWCPatchEmbed(nn.Module):
     """
     Depthwise Convolutional Patch Embedding layer
@@ -193,7 +172,6 @@ class DWCPatchEmbed(nn.Module):
     ):
         super().__init__()
 
-        # TODO : confirm whether act_layer is effective or not
         self.patch_conv = DWConv2d_BN(
             in_chans,
             embed_dim,
@@ -207,7 +185,6 @@ class DWCPatchEmbed(nn.Module):
         x = self.patch_conv(x)
 
         return x
-
 
 class Patch_Embed_stage(nn.Module):
     def __init__(self, embed_dim, num_path=4, isPool=False, norm_cfg=dict(type="BN")):
@@ -226,8 +203,6 @@ class Patch_Embed_stage(nn.Module):
                 for idx in range(num_path)
             ]
         )
-
-        # scale
 
     def forward(self, x):
         att_inputs = []
@@ -257,7 +232,6 @@ class ConvPosEnc(nn.Module):
         x = x.flatten(2).transpose(1, 2).contiguous()
 
         return x
-
 
 class ConvRelPosEnc(nn.Module):
     """Convolutional relative position encoding."""
@@ -310,7 +284,6 @@ class ConvRelPosEnc(nn.Module):
         B, h, N, Ch = q.shape
         H, W = size
 
-        # We don't use CLS_TOKEN
         q_img = q
         v_img = v
 
