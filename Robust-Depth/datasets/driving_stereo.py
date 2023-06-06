@@ -11,7 +11,7 @@ from .mono_dataset import MonoDataset
 
 
 class DRIVINGSTEREO(MonoDataset):
-    """Superclass for different types of KITTI dataset loaders
+    """Superclass for different types of DrivingStereo dataset loader
     """
     def __init__(self, *args, **kwargs):
         super(DRIVINGSTEREO, self).__init__(*args, **kwargs)
