@@ -102,7 +102,7 @@ Feel free to vary which augmentations are used a fill list with there mappings a
 --do_defocus Defocus Blur
 --do_glass Glass Blur
 --do_zoom Zoom 
---do_snow Ground Snow
+--do_snow Snow
 --do_frost Frost
 --do_elastic Elastic transform
 --do_pixelate Pixelation
@@ -118,16 +118,16 @@ Feel free to vary which augmentations are used a fill list with there mappings a
 --do_erase Random erase
 --do_flip Horizontal Flip
 --do_greyscale Grey
---do_ground_snow 
---do_dusk
---do_dawn 
---R 
---G 
---B
+--do_ground_snow Gropund Snow
+--do_dusk Dusk time 
+--do_dawn Dawn time
+--R Red
+--G Green
+--B Blue 
 
 
 ## Evaluation
-We evaluate the models by running:
+We on each dataset:
 
 
 ### KITTI 
@@ -157,20 +157,20 @@ python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {wei
 ### DrivingStereo 
 
 ```
-python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --data_path /media/kieran/SSDNEW/Base-Model/data/DrivingStereo --eval_split foggy
+python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --data_path {data_path} --eval_split foggy
 
 ```
 
 ### NuScenes 
 
 ```
-python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --data_path /media/kieran/SSDNEW/Base-Model/data/nuScenes_RAW --eval_split nuScenes_test_night
+python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --data_path {data_path} --eval_split nuScenes_test_night
 ```
 
 ### Foggy CityScape 
 
 ```
-python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --eval_split cityscape --data_path /media/kieran/SSDNEW/Base-Model/data/CS_RAW --foggy
+python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --eval_split cityscape --data_path {data_path} --foggy
 ```
 
 
