@@ -34,6 +34,8 @@ conda install -c conda-forge matplotlib tqdm timm einops esri mmcv-full esri mms
 
 We use the raw [KITTI dataset](http://www.cvlibs.net/download.php?file=raw_data_downloader.zip) and specifically follow the instructions of [Monodepth2](https://github.com/nianticlabs/monodepth2)
 
+When 
+
 ## Creating Augmentations For Any Dataset
 
 ### Night, Dawn & Dusk
