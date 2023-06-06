@@ -118,13 +118,13 @@ class MonodepthOptions:
                                  action="store_true")
 
         self.parser.add_argument("--one_optim",
-                                 help="if set, we use double optim",
+                                 help="if set, we use naive optimisation",
                                  action="store_true")
         self.parser.add_argument("--warp_clear",
-                                 help="if set, we use clear warping",
+                                 help="if set, we use semi-augmented warping",
                                  action="store_true")
         self.parser.add_argument("--depth_loss",
-                                 help="if set, we use clear warping",
+                                 help="if set, we use pseudo supervised depth loss",
                                  action="store_true")
         self.parser.add_argument("--weighter",
                                  type=float,
