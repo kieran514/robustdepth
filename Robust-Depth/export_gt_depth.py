@@ -1,5 +1,6 @@
 
 # python vddepth/export_gt_depth.py --split nuScenes_test_night --data_path /media/kieran/SSDNEW/Base-Model/data/nuScenes_RAW
+# python export_gt_depth.py --data_path /media/kieran/SSDNEW/Base-Model/data/DrivingStereo --split sunny
 
 import os
 from PIL import Image
@@ -27,7 +28,8 @@ def export_gt_depths_kitti():
                         type=str,
                         help='which split to export gt from',
                         required=True,
-                        choices=["eigen", "eigen_benchmark", "eigen_zhou", "nuScenes_test", "nuScenes_val", "nuScenes_test_night"])
+                        choices=["eigen", "eigen_benchmark", "eigen_zhou", "nuScenes_test", "nuScenes_val", "nuScenes_test_night",
+                                "cloudy", "foggy", "rainy", "sunny"]])
     opt = parser.parse_args()
 
     #eigen_zhou represents validation splits
@@ -84,6 +86,11 @@ def export_gt_depths_kitti():
                 camsensor_token = sample_cam
             
             gt_depth = get_depth(nusc, pointsensor_token, camsensor_token)
+           
+        elif opt.split == "sunny" or opt.split == "foggy" or opt.split == "rainy" or opt.split == "cloudy":
+            gt_depth_path = os.path.join(opt.data_path, opt.split, 'depth-map-full-size', line)
+            gt_depth = np.array(pil.open(gt_depth_path)).astype(np.float32) / 256
+            
             
         gt_depths.append(gt_depth.astype(np.float32))
 
