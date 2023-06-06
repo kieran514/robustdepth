@@ -11,7 +11,7 @@ from .mono_dataset import MonoDataset
 
 
 class NUSCENESEVAL(MonoDataset):
-    """Superclass for different types of KITTI dataset loaders
+    """Superclass for NuScenes dataset loader
     """
     def __init__(self, *args, **kwargs):
         super(NUSCENESEVAL, self).__init__(*args, **kwargs)
