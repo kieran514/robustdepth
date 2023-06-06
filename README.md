@@ -42,7 +42,8 @@ We use the raw [KITTI dataset](http://www.cvlibs.net/download.php?file=raw_data_
 
 ## Pretrained Models
 
-[here](https://drive.google.com/drive/folders/1xY7n3kNhpoy1VM4ohmHYN1Oc_SVWwAWY?usp=sharing), where KITTI+CityScape is trained on both CityScape and KITTI and leads to the greatest depth estimations.
+[ViT]([https://drive.google.com/drive/folders/1xY7n3kNhpoy1VM4ohmHYN1Oc_SVWwAWY?usp=sharing](https://drive.google.com/drive/folders/1oKT2oAPp-7altFTvPKR2d7FdgXN9xMG3?usp=sharing))
+[Resnet18]([https://drive.google.com/drive/folders/1xY7n3kNhpoy1VM4ohmHYN1Oc_SVWwAWY?usp=sharing](https://drive.google.com/drive/folders/1QSHZjOk6Ufw52BGjJmuxV7PJQNisH5Kk?usp=sharing))
 
 ## Training
 
