@@ -98,7 +98,35 @@ bash experiments/train.sh
 The hyperparameters are defined in each script file and set at their defaults as stated in the paper.
 
 Feel free to vary which augmentations are used a fill list with there mappings are provided here:
-...
+
+--do_gauss Gaussian Noise
+--do_shot Shot Noise
+--do_impulse Impluse Noise
+--do_defocus Defocus Blur
+--do_glass Glass Blur
+--do_zoom Zoom 
+--do_snow Ground Snow
+--do_frost Frost
+--do_elastic Elastic transform
+--do_pixelate Pixelation
+--do_jpeg_comp Jpeg Compresion
+--do_color Brightness effect
+--do_blur Motion Blur
+--do_night Night time 
+--do_fog Fog
+--do_rain Rain 
+--do_scale RA scailing
+--do_tiling Tiling split
+--do_vertical Vertical split
+--do_erase Random erase
+--do_flip Horizontal Flip
+--do_greyscale Grey
+--do_ground_snow 
+--do_dusk
+--do_dawn 
+--R 
+--G 
+--B
 
 
 ## Evaluation
