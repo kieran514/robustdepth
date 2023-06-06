@@ -35,9 +35,6 @@ class CityscapesDataset(MonoDataset):
         # adapted from sfmlearner
         split = "train" if self.is_train else "test"
 
-        # print('city: ', city)
-        # print('frame_name: ', frame_name)
-
         if split == 'train':
             camera_file = os.path.join(self.data_path, 'camera',
                                     split, city, frame_name[:-7] + '_*_camera.json')
@@ -67,7 +64,6 @@ class CityscapesDataset(MonoDataset):
 
         color = self.loader(self.get_image_path(city, frame_name, spec, side, is_sequence, foggy))
 
-        # crop down to cityscapes size
         w, h = color.size
         crop_h = h * 3 // 4
         color = color.crop((0, 0, w, crop_h))
