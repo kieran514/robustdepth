@@ -8,36 +8,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-
-
-
 def upsample(x):
     """Upsample input tensor by a factor of 2
     """
     return F.interpolate(x, scale_factor=2, mode="nearest")
-
-
-def visual_feature(features,stage):
-    feature_map = features.squeeze(0).cpu()
-    n,h,w = feature_map.size()
-    print(h,w)
-    list_mean = []
-    #sum_feature_map = torch.sum(feature_map,0)
-    sum_feature_map,_ = torch.max(feature_map,0)
-    for i in range(n):
-        list_mean.append(torch.mean(feature_map[i]))
-        
-    sum_mean = sum(list_mean)
-    feature_map_weighted = torch.ones([n,h,w])
-    for i in range(n):
-        feature_map_weighted[i,:,:] = (torch.mean(feature_map[i]) / sum_mean) * feature_map[i,:,:]
-    sum_feature_map_weighted = torch.sum(feature_map_weighted,0)
-    plt.imshow(sum_feature_map)
-    #plt.savefig('feature_viz/{}_stage.png'.format(a))
-    plt.savefig('feature_viz/decoder_{}.png'.format(stage))
-    plt.imshow(sum_feature_map_weighted)
-    #plt.savefig('feature_viz/{}_stage_weighted.png'.format(a))
-    plt.savefig('feature_viz/decoder_{}_weighted.png'.format(stage))
 
 def depth_to_disp(depth, min_depth, max_depth):
     min_disp = 1 / max_depth
@@ -420,7 +394,6 @@ class CS_Block(nn.Module):
         self.sigmoid = nn.Sigmoid()
         ## Spatial_Block
         self.conv = nn.Conv2d(2,1,kernel_size = 1, bias = False)
-        #self.conv = nn.Conv2d(1,1,kernel_size = 1, bias = False)
         self.relu = nn.ReLU(inplace = True)
     
     def forward(self, in_feature):
