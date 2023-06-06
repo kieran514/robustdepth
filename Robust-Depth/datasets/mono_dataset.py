@@ -221,7 +221,6 @@ class MonoDataset(data.Dataset):
                 n, im, i = k
                 inputs[(n, im, i)] = self.to_tensor(f)
                 if n == "aug":
-                    # print(k)
                     if not small: #this is the original method and will run if do scale s false and it would run if do scale is true + not small 
                         if inputs[(n, im, i)].sum() == 0:
                             inputs[("color_" + n, im, i)] = inputs[(n, im, i)]
@@ -389,7 +388,6 @@ class MonoDataset(data.Dataset):
         
         if do_scale:
             if small:
-                 # Low-Scale
                 ra = 0.7
                 rb = 0.9
                 resize_ratio = (rb - ra) * random.random() + ra
@@ -405,7 +403,6 @@ class MonoDataset(data.Dataset):
                     inputs[("resize", i)] = torch.Tensor((width_re // s, height_re // s))
                 box_HiS = 0
             else:
-                # High-Scale
                 box_HiS = []
                 ra = 1.1
                 rb = 2.0
