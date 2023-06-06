@@ -37,6 +37,11 @@ We use the raw [KITTI dataset](http://www.cvlibs.net/download.php?file=raw_data_
 ## Creating Augmentations For Any Dataset
 
 ### Night, Dawn & Dusk
+We fist copy the repo from CoMoGAN into the CoMoGAN folder, we then exicute the script privded in the CoMoGAN fodler to create NIGHT, DAWN and DUSK image augmetations. (Make sure to change the datapath)
+```bash
+bash comogan.sh 
+```
+Please direct over to the CoMoGAN github page for more information
 
 ### Fog & Rain
 
