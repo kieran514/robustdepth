@@ -135,8 +135,6 @@ class MonoDataset(data.Dataset):
             self.resize[i] = transforms.Resize((self.height // s, self.width // s),
                                                interpolation=self.interp)
 
-        # self.load_depth = self.check_depth()
-
     def tile_crop(self, color_aug_f, do_tiling, selection, order):
         if do_tiling:
             # output_image = []
@@ -158,8 +156,6 @@ class MonoDataset(data.Dataset):
     def vertical_crop(self, color_aug_f, do_vertical, rand_w):
         '''Applies a vertical dependence augmentation
         '''
-        # print("Initial", color_aug_f.shape)
-
         if do_vertical and rand_w > 0:
             output_image = []
             in_h = color_aug_f.shape[1]
@@ -195,7 +191,7 @@ class MonoDataset(data.Dataset):
                 n, im, i = k
                 for i in range(self.num_scales):
                     if do_scale:
-                        if n == "augmented": # augmented should always be in the inputs even if its just the origional color data TODO for cityscape and nuscenes
+                        if n == "augmented": # augmented should always be in the inputs even if its just the origional color data
                             if small: 
                                 inputs[("augmented", im, i)] = self.scale_resize[i](inputs[(n, im, i - 1)])
                                 inputs[("aug", im, i)] = inputs[("augmented", im, i)]
@@ -204,11 +200,11 @@ class MonoDataset(data.Dataset):
                                 inputs[("aug", im, i)] = inputs[("augmented", im, i)].crop(box_HiS[i])
                         elif n == "color":
                             if small:
-                                inputs[("color", im, i)] = self.scale_resize[i](inputs[(n, im, i - 1)]) # without augmented augments
+                                inputs[("color", im, i)] = self.scale_resize[i](inputs[(n, im, i - 1)]) # without augmented
                                 inputs[("scale_aug", im, i)] = inputs[("color", im, i)] # without augmented augments
                             else:
-                                inputs[("color", im, i)] = self.scale_resize[i](inputs[(n, im, i - 1)]).crop(box_HiS[i]) # without augmented augments
-                                inputs[("scale_aug", im, i)] = inputs[("color", im, i)] # without augmented augments
+                                inputs[("color", im, i)] = self.scale_resize[i](inputs[(n, im, i - 1)]).crop(box_HiS[i]) # without augmented
+                                inputs[("scale_aug", im, i)] = inputs[("color", im, i)] # without augmented
                             
                             inputs[(n, im, i)] = self.resize[i](inputs[(n, im, i - 1)])
                     else:
@@ -226,7 +222,7 @@ class MonoDataset(data.Dataset):
                 inputs[(n, im, i)] = self.to_tensor(f)
                 if n == "aug":
                     # print(k)
-                    if not small: #this is the origional mthod and will run if do scale s false and it would run if do scale is true + not small 
+                    if not small: #this is the original method and will run if do scale s false and it would run if do scale is true + not small 
                         if inputs[(n, im, i)].sum() == 0:
                             inputs[("color_" + n, im, i)] = inputs[(n, im, i)]
                         else:
@@ -292,7 +288,6 @@ class MonoDataset(data.Dataset):
             ("color", <frame_id>, <scale>)          for raw colour images,
             ("color_aug", <frame_id>, <scale>)      for augmented colour images,
             ("K", scale) or ("inv_K", scale)        for camera intrinsics,
-            "depth_gt"                              for ground truth depth maps
 
         <frame_id> is:
             an integer (e.g. 0, -1, or 1) representing the temporal step relative to 'index',
@@ -315,10 +310,7 @@ class MonoDataset(data.Dataset):
             'ground_snow':self.do_ground_snow_aug, 'dawn+rain':self.do_dawn_aug and self.do_rain_aug, 'dusk+rain':self.do_dusk_aug and self.do_rain_aug, 'dusk+fog':self.do_dusk_aug and self.do_fog_aug,
             'dawn+fog':self.do_dawn_aug and self.do_fog_aug, 'dawn+rain+fog':self.do_dawn_aug and self.do_rain_aug and self.do_fog_aug, 'dusk+rain+fog':self.do_dusk_aug and self.do_rain_aug and self.do_fog_aug,
             'greyscale':self.do_greyscale_aug, 'R':self.do_Red_aug, 'G':self.do_Green_aug, 'B':self.do_Blue_aug,'clear': self.do_scale_aug or self.tiling or self.vertical or self.do_erase_aug or self.do_flip_aug}
-
-            # , 'tiling': self.tiling, 'scale': self.do_scale_aug, 'erase': self.do_erase_aug, 'vertical': self.vertical}
-            # ,'clear': self.do_scale_aug or self.tiling or self.vertical or self.do_erase_aug or self.do_flip_aug}
-
+            
             valid_items = [key for key, value in dict_color_augs.items() if value]
 
             if len(valid_items) == 1:
@@ -338,18 +330,7 @@ class MonoDataset(data.Dataset):
                 transforms.ColorJitter.get_params(self.brightness, self.contrast, self.saturation, self.hue)
             else:
                 do_color_aug = False
-
-            # do_vertical = (spec == 'vertical')
-            # do_tiling = (spec == 'tiling')
-            # do_scale = (spec == 'scale')
-            # small = do_scale and random.random() > 0.5
-            # rand_erase = (spec == 'erase')
-
-
-            # if spec in ['tiling','scale','erase','vertical']:
-            #     spec = 'data'
-            
-
+                
             if spec == 'clear':
                 spec = 'data'
                 do_geomtric = True
@@ -359,15 +340,7 @@ class MonoDataset(data.Dataset):
         else:
             spec = 'data'
             do_color_aug = False
-
-            # do_vertical = False
-            # do_tiling = False
-            # do_scale = False
-            # small = False
-            # rand_erase = False
-
-        # Geometrical augmentations
-        
+            
         do_flip = self.is_train and self.do_flip_aug and random.random() > 0.5
 
         if self.is_train:
@@ -461,101 +434,7 @@ class MonoDataset(data.Dataset):
                 inputs[("resize", i)] = torch.Tensor((0, 0))
 
         poses = {}
-        if type(self).__name__ == "MixedDataset":
-            line = self.filenames[index]
-            # if line.split()[0].isdigit():
-            #     inputs["dataset"] = 2 # nuscenes
-            #     index = self.get_correct_index(index)
-            #     sample = self.get_sample_data(index)
-            #     for i in self.frame_idxs:
-            #         if i == "s":
-            #             raise NotImplementedError('nuscenes dataset does not support stereo depth')
-            #         else:
-            #             inputs[("color", i, -1)] = self.get_color_nuscenes(sample, i, do_flip)
-
-            #     for scale in range(self.num_scales):
-            #         K = self.load_intrinsics_nuscenes(sample)
-            #         if do_scale:
-            #             K[0, :] *= width_re // (2 ** scale)
-            #             K[1, :] *= height_re // (2 ** scale)
-            #             inv_K = np.linalg.pinv(K)
-            #             inputs[("K", scale)] = torch.from_numpy(K)
-            #             inputs[("inv_K", scale)] = torch.from_numpy(inv_K)
-            #         else:
-            #             K[0, :] *= self.width // (2 ** scale)
-            #             K[1, :] *= self.height // (2 ** scale)
-            #             inv_K = np.linalg.pinv(K)
-            #             inputs[("K", scale)] = torch.from_numpy(K)
-            #             inputs[("inv_K", scale)] = torch.from_numpy(inv_K)
-                                    
-            if line.split()[0][:10] in ['2011_09_26', '2011_09_28', '2011_09_29', '2011_09_30', '2011_10_03']:
-                inputs["dataset"] = 0 # KITTI
-                if self.is_robust_test:
-                    folder, frame_index, side, spec = self.index_to_folder_and_frame_idx_kitti(index)
-                else:
-                    folder, frame_index, side, _ = self.index_to_folder_and_frame_idx_kitti(index)
-                for i in self.frame_idxs:
-                    if i == "s":
-                        other_side = {"r": "l", "l": "r"}[side]
-                        inputs[("color", i, -1)] = self.get_color_kitti(
-                            folder, frame_index, other_side, do_flip)
-                    else:
-                        try:
-                            if self.is_robust_test:
-                                inputs[("color", i, -1)] = self.get_color_kitti(folder, frame_index + i, side, spec, do_flip)
-                            else:
-                                inputs[("color", i, -1)] = self.get_color_kitti(folder, frame_index + i, side, "data", do_flip)
-                            if self.is_train or self.robust_val:
-                                inputs[("augmented", i, -1)] = self.get_color_kitti(folder, frame_index + i, side, spec, do_flip)
-
-                        except FileNotFoundError as e:
-                            if i != 0:
-                                # fill with dummy values
-                                inputs[("color", i, -1)] = Image.fromarray(np.zeros((100, 100, 3)).astype(np.uint8))
-                                poses[i] = None
-                            else:
-                                raise FileNotFoundError(f'Cannot find frame - make sure your '
-                                                        f'--data_path is set correctly, or try adding'
-                                                        f' the --png flag. {e}')
-                for scale in range(self.num_scales):
-                    K = self.load_intrinsics_kitti(folder, frame_index)
-                    if do_scale:
-                        K[0, :] *= width_re // (2 ** scale)
-                        K[1, :] *= height_re // (2 ** scale)
-                        inv_K = np.linalg.pinv(K)
-                        inputs[("K", scale)] = torch.from_numpy(K)
-                        inputs[("inv_K", scale)] = torch.from_numpy(inv_K)
-                    else:
-                        K[0, :] *= self.width // (2 ** scale)
-                        K[1, :] *= self.height // (2 ** scale)
-                        inv_K = np.linalg.pinv(K)
-                        inputs[("K", scale)] = torch.from_numpy(K)
-                        inputs[("inv_K", scale)] = torch.from_numpy(inv_K)
-            else:
-                inputs["dataset"] = 1 # CITYSCAPE
-                if not self.is_train:
-                    self.frame_idxs = [0, -1]
-                folder, frame_index, side = self.index_to_folder_and_frame_idx_cityscape(index)
-                inputs.update(self.get_colors_cityscape(folder, frame_index, side, do_flip, 'data', augs = False))
-                if self.is_train or self.robust_val:
-                    inputs.update(self.get_colors_cityscape(folder, frame_index, side, do_flip, spec, augs = True))
-        
-                for scale in range(self.num_scales):
-                    K = self.load_intrinsics(folder, frame_index)
-                    if do_scale:
-                        K[0, :] *= width_re // (2 ** scale)
-                        K[1, :] *= height_re // (2 ** scale)
-                        inv_K = np.linalg.pinv(K)
-                        inputs[("K", scale)] = torch.from_numpy(K)
-                        inputs[("inv_K", scale)] = torch.from_numpy(inv_K)
-                    else:
-                        K[0, :] *= self.width // (2 ** scale)
-                        K[1, :] *= self.height // (2 ** scale)
-                        inv_K = np.linalg.pinv(K)
-                        inputs[("K", scale)] = torch.from_numpy(K)
-                        inputs[("inv_K", scale)] = torch.from_numpy(inv_K)
-
-        elif type(self).__name__ == "CityscapesDataset":
+        if type(self).__name__ == "CityscapesDataset":
             folder, frame_index, side = self.index_to_folder_and_frame_idx(index)
             inputs.update(self.get_colors(folder, frame_index, side, do_flip, 'data', augs = False, foggy=self.foggy))
             if self.is_train or self.robust_val:
@@ -680,7 +559,7 @@ class MonoDataset(data.Dataset):
         if do_tiling:
             height_range = [2, 3]
             width_range = [2, 4]
-            # factors of 32 except 3 :)
+            # factors of 32 except 3 
             height_selection = random.choice(height_range)
             width_selection = random.choice(width_range)
             selection = (height_selection, width_selection)  
@@ -708,9 +587,6 @@ class MonoDataset(data.Dataset):
                 del inputs[("augmented", i, 1)]
                 del inputs[("augmented", i, 2)]
                 del inputs[("augmented", i, 3)]
-            # del inputs[("color_aug", i, -1)]
-            # del inputs[("aug", i, -1)]
-            # del inputs[("scale_aug", i, -1)]
         
         inputs["index"] = index
         inputs["rand_w"] = rand_w
@@ -720,16 +596,9 @@ class MonoDataset(data.Dataset):
 
         new_dict = {}
         if self.is_train:
-            # for key in dict_geometry_augs.keys():
-            #     if geometric == key:
-            #         new_dict[key] = True
-            #     else:
-            #         new_dict[key] = False
             for key in dict_color_augs.keys():
                 if key == "color" and do_color_aug:
                     new_dict[key] = True
-                # elif key == "clear" and do_geomtric:
-                #     new_dict[key] = True
                 elif spec == key:
                     new_dict[key] = True
                 elif key == "tiling" and do_tiling:
@@ -742,9 +611,6 @@ class MonoDataset(data.Dataset):
                     new_dict[key] = True
                 else:
                     new_dict[key] = False
-
-
-        inputs["distribution"] = new_dict
 
         inputs["do_scale"] = do_scale
         inputs["small"] = small
