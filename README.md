@@ -132,7 +132,7 @@ Feel free to vary which augmentations are used a fill list with there mappings a
 
 
 ## Evaluation
-We on each dataset:
+We test on each dataset:
 
 
 ### KITTI 
