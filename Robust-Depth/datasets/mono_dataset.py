@@ -5,14 +5,13 @@ os.environ["NUMEXPR_NUM_THREADS"] = "1"  # noqa F402
 os.environ["OMP_NUM_THREADS"] = "1"  # noqa F402
 
 import numpy as np
-from PIL import Image  # using pillow-simd for increased speed
+from PIL import Image  
 import cv2
 
 import torch
 import torch.utils.data as data
 from torchvision import transforms
 import pdb
-# from .Automold import Automold as am
 import math
 import torchvision.transforms as T
 
@@ -137,7 +136,6 @@ class MonoDataset(data.Dataset):
 
     def tile_crop(self, color_aug_f, do_tiling, selection, order):
         if do_tiling:
-            # output_image = []
             _, h, w = color_aug_f.shape
             height_selection = selection[0]
             width_selection = selection[1]
@@ -191,7 +189,7 @@ class MonoDataset(data.Dataset):
                 n, im, i = k
                 for i in range(self.num_scales):
                     if do_scale:
-                        if n == "augmented": # augmented should always be in the inputs even if its just the origional color data
+                        if n == "augmented": # augmented should always be in the inputs even if its just the original color data
                             if small: 
                                 inputs[("augmented", im, i)] = self.scale_resize[i](inputs[(n, im, i - 1)])
                                 inputs[("aug", im, i)] = inputs[("augmented", im, i)]
@@ -221,7 +219,7 @@ class MonoDataset(data.Dataset):
                 n, im, i = k
                 inputs[(n, im, i)] = self.to_tensor(f)
                 if n == "aug":
-                    if not small: #this is the original method and will run if do scale s false and it would run if do scale is true + not small 
+                    if not small: # this is the original method and will run if do scale is false and it would run if do scale is true + not small 
                         if inputs[(n, im, i)].sum() == 0:
                             inputs[("color_" + n, im, i)] = inputs[(n, im, i)]
                         else:
@@ -300,7 +298,6 @@ class MonoDataset(data.Dataset):
         """
         inputs = {}
 
-        #### color augs
         if self.is_train or self.robust_val:
             dict_color_augs = {'blur': self.do_blur_aug, 'defocus_blur': self.do_defocus_aug, 'elastic_transform': self.do_elastic_aug, 'fog': self.do_fog_aug, 'fog+night': self.do_fog_aug and self.do_night_aug, 
             'frost': self.do_frost_aug, 'gaussian_noise': self.do_gauss_aug, 'glass_blur': self.do_glass_aug, 'impulse_noise': self.do_impulse_aug, 'jpeg_compression': self.do_jpeg_comp_aug, 'night': self.do_night_aug,
@@ -474,14 +471,12 @@ class MonoDataset(data.Dataset):
                             inputs[("color", i, -1)] = self.get_color(folder, frame_index + i, side, "data", do_flip)
                         if self.is_train or self.robust_val:
                             inputs[("augmented", i, -1)] = self.get_color(folder, frame_index + i, side, spec, do_flip)
-                        # inputs[("aug", i, -1)] = self.get_color(folder, frame_index + i, side, spec, do_flip)
                     except FileNotFoundError as e:
                         if i != 0:
                             # fill with dummy values
                             inputs[("color", i, -1)] = Image.fromarray(np.zeros((100, 100, 3)).astype(np.uint8))
                             if self.is_train or self.robust_val:
                                 inputs[("augmented", i, -1)] = Image.fromarray(np.zeros((100, 100, 3)).astype(np.uint8))
-                            # inputs[("aug", i, -1)] = Image.fromarray(np.zeros((100, 100, 3)).astype(np.uint8))
                             poses[i] = None
                         else:
                             raise FileNotFoundError(f'Cannot find frame - make sure your '
