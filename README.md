@@ -78,7 +78,7 @@ The final file format should look like this;
 ## Pretrained Models
 
 | `--model_name`          | Training modality | Imagenet pretrained? | Model resolution  | Model  |
-|-------------------------|-------------------|--------------------------|-----------------|------|----------------|
+|-------------------------|-------------------|--------------------------|-----------------|------|
 | [`ViT`](https://drive.google.com/drive/folders/1oKT2oAPp-7altFTvPKR2d7FdgXN9xMG3?usp=sharing)          | Mono              | Yes | 640 x 192                | ViT        |
 | [`Resnet18`](https://drive.google.com/drive/folders/1QSHZjOk6Ufw52BGjJmuxV7PJQNisH5Kk?usp=sharing)        | Mono            | Yes | 640 x 192                |  Resnet18          |
 
