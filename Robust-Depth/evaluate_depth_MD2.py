@@ -27,11 +27,7 @@ cv2.setNumThreads(0)  # This speeds up evaluation 5x on our unix systems (OpenCV
 
 
 splits_dir = os.path.join("splits")
-# splits_dir = os.path.join(os.path.dirname(__file__), "splits")
 
-# Models which were trained with stereo supervision were trained with a nominal
-# baseline of 0.1 units. The KITTI rig has a baseline of 54cm. Therefore,
-# to convert our stereo predictions to real-world scale we multiply our depths by 5.4.
 STEREO_SCALE_FACTOR = 5.4
 
 
@@ -114,10 +110,6 @@ def evaluate(opt):
                                                [0], 4, is_train=False, is_robust_test=opt.robust_test, 
                                            robust_augment=opt.robust_augment)
 
-        # dataset = datasets.KITTIRAWDataset(opt.data_path, filenames,
-        #                                    encoder_dict['height'], encoder_dict['width'],
-        #                                    [0], 4, is_train=False, is_robust_test=opt.robust_test, 
-        #                                    robust_augment=opt.robust_augment)
         dataloader = DataLoader(dataset, 1, shuffle=False, num_workers=6,
                             pin_memory=True, drop_last=False)
 
@@ -153,12 +145,8 @@ def evaluate(opt):
                     input_color = torch.cat((input_color, torch.flip(input_color, [3])), 0)
 
                 output = depth_decoder(encoder(input_color))
-                # pdb.set_trace()
 
                 pred_disp, _ = disp_to_depth(output[("disp", 0)], opt.min_depth, opt.max_depth)
-                # _, depth_pred = disp_to_depth(output[("disp", 0)], opt.min_depth, opt.max_depth)
-                # depth_pred = torch.clamp(F.interpolate(depth_pred, [gt_height, gt_width], mode="bilinear", align_corners=False), 1e-3, 80)
-                # depth_pred = depth_pred.detach().squeeze()
                 pred_disp = pred_disp.cpu()[:, 0].numpy()
 
                 if opt.post_process:
@@ -182,19 +170,6 @@ def evaluate(opt):
 
             pred_disps = pred_disps[eigen_to_benchmark_ids]
 
-    if opt.save_pred_disps:
-        save_dir = os.path.join('/media/kieran/SSDNEW/saved_images')
-        # print("-> Saving predicted disparities to ", output_path)
-        # np.save(output_path, pred_disps)
-
-        for idx in range(len(pred_disps)):
-            disp_resized = cv2.resize(pred_disps[idx], (1216, 352))
-            depth = STEREO_SCALE_FACTOR / disp_resized
-            depth = np.clip(depth, 0, 80)
-            depth = np.uint16(depth * 256)
-            save_path = os.path.join(save_dir, "{:010d}.png".format(idx))
-            cv2.imwrite(save_path, depth)
-
     if opt.no_eval:
         print("-> Evaluation disabled. Done.")
         quit()
@@ -213,8 +188,8 @@ def evaluate(opt):
             save_path = os.path.join(save_dir, "{:010d}.png".format(idx))
             cv2.imwrite(save_path, depth)
 
-        # print("-> No ground truth is available for the KITTI benchmark, so not evaluating. Done.")
-        # quit()
+        print("-> No ground truth is available for the KITTI benchmark, so not evaluating. Done.")
+        quit()
 
     if opt.eval_split == 'cityscape':
         print('loading cityscapes gt depths individually due to their combined size!')
