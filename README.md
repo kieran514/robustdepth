@@ -32,22 +32,28 @@ conda install -c conda-forge matplotlib tqdm timm einops esri mmcv-full esri mms
 
 ## Datasets
 
-We use the raw [KITTI dataset](http://www.cvlibs.net/download.php?file=raw_data_downloader.zip) and specifically follow the intruction of [Monodepth2](https://github.com/nianticlabs/monodepth2)
+We use the raw [KITTI dataset](http://www.cvlibs.net/download.php?file=raw_data_downloader.zip) and specifically follow the instructions of [Monodepth2](https://github.com/nianticlabs/monodepth2)
 
 ## Creating Augmentations For Any Dataset
 
 ### Night, Dawn & Dusk
-We fist copy the repo from [CoMoGAN](https://github.com/astra-vision/CoMoGAN) into the CoMoGAN folder, we then exicute the script privded in the CoMoGAN fodler to create NIGHT, DAWN and DUSK image augmetations. (Make sure to change the datapath)
+We fist copy the repo from [CoMoGAN](https://github.com/astra-vision/CoMoGAN) into the CoMoGAN folder, we then exicute the script privded in the CoMoGAN folder to create NIGHT, DAWN and DUSK image augmetations. (Make sure to change the datapath)
 ```bash
 bash CoMoGAN/comogan.sh 
 ```
-Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) github page for more information
+Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) github page for more information.
 
 ### Fog & Rain
 
 
 
 ### Motion Blur & Snow
+We fist copy the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the AutoMold folder, we then exicute the script provided in the CoMoGAN folder to create Motion blur and snow augmetntaions. (Make sure to change the datapath)
+```bash
+bash AutoMold/automold.sh 
+```
+Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) github page for more information.
+
 
 ### Corruptions & RGBG
 
