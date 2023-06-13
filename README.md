@@ -26,6 +26,20 @@ conda activate robustdepth
 
 ### Training
 We use the [KITTI dataset](http://www.cvlibs.net/download.php?file=raw_data_downloader.zip) and follow the downloading/preprocessing instructions set out by [Monodepth2](https://github.com/nianticlabs/monodepth2).
+Download from scripts;
+```
+wget -i scripts/kitti_archives_to_download.txt -P kitti_data/
+```
+then unzip,
+```
+cd kitti_data
+unzip "*.zip"
+cd ..
+```
+Then convert to jpg
+```
+find kitti_data/ -name '*.png' | parallel 'convert -quality 92 -sampling-factor 2x2,1x1,1x1 {.}.png {.}.jpg && rm {}'
+```
 
 ### Testing
 Downlaod the [Cityscape foggy dataset](https://www.cityscapes-dataset.com/downloads/), the [DrivingStereo weather dataset](https://drivingstereo-dataset.github.io/), and the entire [Nuscenens dataset](https://www.nuscenes.org/nuscenes#download).
@@ -34,9 +48,9 @@ Downlaod the [Cityscape foggy dataset](https://www.cityscapes-dataset.com/downlo
 Here we can create any augmentations we like before we start training. After creating augmented data following the steps below, you can train with just those augmented images. 
 
 ### Motion Blur & Snow
-We fist copy the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the AutoMold folder, we then exicute the script provided in the CoMoGAN folder to create Motion blur and snow augmetntaions. (Make sure to change the datapath)
+We fist copy the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch, we then exicute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmetntaions.
 ```bash
-bash AutoMold/automold.sh 
+python snow_motion.py --data_path {data_directory}
 ```
 Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) github page for more information.
 
