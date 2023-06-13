@@ -24,29 +24,14 @@ conda activate robustdepth
 
 ## Datasets
 
-We use the raw [KITTI dataset](http://www.cvlibs.net/download.php?file=raw_data_downloader.zip) and specifically follow the instructions of [Monodepth2](https://github.com/nianticlabs/monodepth2)
+### Training
+We use the [KITTI dataset](http://www.cvlibs.net/download.php?file=raw_data_downloader.zip) and follow the downloading/preprocessing instructions set out by [Monodepth2](https://github.com/nianticlabs/monodepth2).
 
-When testing you need to downlaod the [Cityscape foggy dataset](https://www.cityscapes-dataset.com/downloads/), the [DrivingStereo weather dataset](https://drivingstereo-dataset.github.io/), and the entire [Nuscenens dataset](https://www.nuscenes.org/nuscenes#download). The splits for the test have been provided. I dont believe I can legally provide the cityscape or the nuscenes files (dont need to for the drvivng stereo). Check so that I can. 
+### Testing
+Downlaod the [Cityscape foggy dataset](https://www.cityscapes-dataset.com/downloads/), the [DrivingStereo weather dataset](https://drivingstereo-dataset.github.io/), and the entire [Nuscenens dataset](https://www.nuscenes.org/nuscenes#download).
 
 ## Creating Augmentations For Any Dataset
-
-### Night, Dawn & Dusk
-We fist copy the repo from [CoMoGAN](https://github.com/astra-vision/CoMoGAN) into the CoMoGAN folder, we then exicute the script privded in the CoMoGAN folder to create NIGHT, DAWN and DUSK image augmetations. (Make sure to change the datapath)
-```bash
-bash CoMoGAN/comogan.sh 
-```
-Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) github page for more information.
-
-### Fog & Rain
-We fist copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering) into the rain-rendering folder, we then exicute the script privded in the rain-rendering folder to create NIGHT, DAWN and DUSK image augmetations. 
-
-For fog generation, we were given this script persoanlly and will only share when I have premission. 
-
-(Make sure to change the datapath)
-```bash
-bash rain-rendering/rain-rendering.sh 
-```
-Please direct over to the [rain-rendering](https://github.com/astra-vision/rain-rendering) github page for more information.
+Here we can create any augmentations we like before we start training. After creating augmented data following the steps below, you can train with just those augmented images. 
 
 ### Motion Blur & Snow
 We fist copy the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the AutoMold folder, we then exicute the script provided in the CoMoGAN folder to create Motion blur and snow augmetntaions. (Make sure to change the datapath)
@@ -62,6 +47,23 @@ bash robustness/robustness.sh
 ```
 Please direct over to the [robustness](https://github.com/hendrycks/robustness) github page for more information.
 
+### Fog & Rain
+We fist copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering) into the rain-rendering folder, we then exicute the script privded in the rain-rendering folder to create NIGHT, DAWN and DUSK image augmetations. 
+
+For fog generation, we were given this script persoanlly and will only share when I have premission. 
+
+(Make sure to change the datapath)
+```bash
+bash rain-rendering/rain-rendering.sh 
+```
+Please direct over to the [rain-rendering](https://github.com/astra-vision/rain-rendering) github page for more information.
+
+### Night, Dawn & Dusk
+We fist copy the repo from [CoMoGAN](https://github.com/astra-vision/CoMoGAN) into the CoMoGAN folder, we then exicute the script privded in the CoMoGAN folder to create NIGHT, DAWN and DUSK image augmetations. (Make sure to change the datapath)
+```bash
+bash CoMoGAN/comogan.sh 
+```
+Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) github page for more information.
 
 #### File Format
 The final file format should look like this;
