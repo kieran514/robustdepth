@@ -22,12 +22,6 @@ conda env create --file environment.yml
 conda activate robustdepth
 ```
 
-Install prerequisite packages listed in requirements.txt:
-
-```bash
-conda install -c conda-forge matplotlib tqdm timm einops esri mmcv-full esri mmsegmentation
-```
-
 ## Datasets
 
 We use the raw [KITTI dataset](http://www.cvlibs.net/download.php?file=raw_data_downloader.zip) and specifically follow the instructions of [Monodepth2](https://github.com/nianticlabs/monodepth2)
