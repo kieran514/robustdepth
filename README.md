@@ -13,13 +13,13 @@ https://github.com/kieran514/Robust-Depth/assets/51883968/1946b0c7-2166-4c7a-95e
 
 ## Installation Setup
 
-The models were trained using CUDA 11.1, Python 3.7.x (conda environment), and PyTorch 1.8.0.
+The models were trained using CUDA 11.1, Python 3.7.4 (conda environment), and PyTorch 1.8.0.
 
 Create a conda environment with the PyTorch library:
 
 ```bash
-conda create -n Robust-Depth python=3.7.4 pytorch=1.8.0 torchvision torchaudio cudatoolkit=11.1 -c pytorch -c nvidia
-conda activate Robust-Depth
+conda env create --file environment.yml
+conda activate robustdepth
 ```
 
 Install prerequisite packages listed in requirements.txt:
