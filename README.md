@@ -6,7 +6,8 @@
  >[[PDF](LINK)] [[Video](LINK)]
 
 
-https://github.com/kieran514/Robust-Depth/assets/51883968/a0cb2528-c351-42fb-be19-a2837800bcad
+
+https://github.com/kieran514/Robust-Depth/assets/51883968/1946b0c7-2166-4c7a-95e1-0038eb0acee8
 
 
 
