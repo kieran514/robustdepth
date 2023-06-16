@@ -42,42 +42,42 @@ find kitti_data/ -name '*.png' | parallel 'convert -quality 92 -sampling-factor 
 ```
 
 ### Testing
-Downlaod the [Cityscape foggy dataset](https://www.cityscapes-dataset.com/downloads/), the [DrivingStereo weather dataset](https://drivingstereo-dataset.github.io/), and the entire [Nuscenens dataset](https://www.nuscenes.org/nuscenes#download).
+Download the [Cityscape foggy dataset](https://www.cityscapes-dataset.com/downloads/), the [DrivingStereo weather dataset](https://drivingstereo-dataset.github.io/), and the entire [Nuscenens dataset](https://www.nuscenes.org/nuscenes#download).
 
 ## Creating Augmentations For Any Dataset
 Here we can create any augmentations we like before we start training. After creating augmented data following the steps below, you can train with just those augmented images. 
 
 ### Motion Blur & Snow
-We fist copy the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch, we then exicute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmetntaions.
+We first copy the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch, we then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations.
 ```bash
 python snow_motion.py --data_path {data_directory}
 ```
-Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) github page for more information.
+Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) GitHub page for more information.
 
 ### Corruptions & RGBG
-We fist copy the repo from [robustness](https://github.com/hendrycks/robustness) into the robustness folder, we then exicute the script provided in the robustness folder to create corruptions, red, blue, green and grey augmetntaions. (Make sure to change the datapath)
+We first copy the repo from [robustness](https://github.com/hendrycks/robustness) into the robustness folder, we then execute the script provided in the robustness folder to create corruptions, red, blue, green and grey augmentations. (Make sure to change the datapath)
 ```bash
 bash robustness/robustness.sh 
 ```
-Please direct over to the [robustness](https://github.com/hendrycks/robustness) github page for more information.
+Please direct over to the [robustness](https://github.com/hendrycks/robustness) GitHub page for more information.
 
 ### Fog & Rain
-We fist copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering) into the rain-rendering folder, we then exicute the script privded in the rain-rendering folder to create NIGHT, DAWN and DUSK image augmetations. 
+We first copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering) into the rain-rendering folder, we then execute the script provided in the rain-rendering folder to create NIGHT, DAWN and DUSK image augmentations. 
 
-For fog generation, we were given this script persoanlly and will only share when I have premission. 
+For fog generation, we were given this script personally and will only share it when I have permission. 
 
 (Make sure to change the datapath)
 ```bash
 bash rain-rendering/rain-rendering.sh 
 ```
-Please direct over to the [rain-rendering](https://github.com/astra-vision/rain-rendering) github page for more information.
+Please direct over to the [rain-rendering](https://github.com/astra-vision/rain-rendering) GitHub page for more information.
 
 ### Night, Dawn & Dusk
-We fist copy the repo from [CoMoGAN](https://github.com/astra-vision/CoMoGAN) into the CoMoGAN folder, we then exicute the script privded in the CoMoGAN folder to create NIGHT, DAWN and DUSK image augmetations. (Make sure to change the datapath)
+We first copy the repo from [CoMoGAN](https://github.com/astra-vision/CoMoGAN) into the CoMoGAN folder, we then execute the script provided in the CoMoGAN folder to create NIGHT, DAWN and DUSK image augmentations. (Make sure to change the datapath)
 ```bash
 bash CoMoGAN/comogan.sh 
 ```
-Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) github page for more information.
+Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) GitHub page for more information.
 
 #### File Format
 The final file format should look like this;
@@ -105,11 +105,11 @@ bash experiments/train.sh
 
 The hyperparameters are defined in each script file and set at their defaults as stated in the paper.
 
-Feel free to vary which augmentations are used a fill list with there mappings are provided here:
+Feel free to vary which augmentations are used a fill list with their mappings are provided here:
 
 --do_gauss Gaussian Noise
 --do_shot Shot Noise
---do_impulse Impluse Noise
+--do_impulse Impulse Noise
 --do_defocus Defocus Blur
 --do_glass Glass Blur
 
