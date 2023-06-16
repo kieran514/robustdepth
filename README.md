@@ -79,7 +79,8 @@ bash CoMoGAN/comogan.sh
 Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) GitHub page for more information.
 
 #### File Format
--
+```
+
 ├── KITTI_RAW
     ├── 2011_09_26
     ├── 2011_09_28
@@ -133,6 +134,7 @@ Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) Git
     ├── 2011_09_29
     ├── 2011_09_30
     └── 2011_10_03
+```
 
 ## Pretrained Models
 
