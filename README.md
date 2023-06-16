@@ -46,7 +46,7 @@ find data/KITTI_RAW/ -name '*.png' | parallel 'convert -quality 92 -sampling-fac
 Here we can create any augmentations we like before we start training. After creating augmented data following the steps below, you can train with just those augmented images. 
 
 ### Motion Blur & Snow
-We first copy the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. First, rename the Automold--Road-Augmentation-Library-master to Automold. Then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations.
+We first download the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. First, rename the Automold--Road-Augmentation-Library-master to Automold. Then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations.
 
 ```
 python scripts/snow_motion.py 
@@ -54,9 +54,9 @@ python scripts/snow_motion.py
 Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) GitHub page for more information.
 
 ### Corruptions & RGB-Grey
-We first copy the repo from [robustness](https://github.com/hendrycks/robustness) into the robustness folder, we then execute the script provided in the robustness folder to create corruptions, red, blue, green and grey augmentations. (Make sure to change the datapath)
-```bash
-bash robustness/robustness.sh 
+We first download the repo from [robustness](https://github.com/hendrycks/robustness) into the main branch. First, rename the robustness-master to robustness. We then execute the corruption.py script provided in the scripts folder to create motion image degradation augmentations, including red, green, blue and grey images.
+```
+python scripts/corruption.py 
 ```
 Please direct over to the [robustness](https://github.com/hendrycks/robustness) GitHub page for more information.
 
