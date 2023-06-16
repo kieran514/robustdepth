@@ -54,6 +54,7 @@ python scripts/snow_motion.py
 Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) GitHub page for more information.
 
 ### Corruptions & RGB-Grey
+conda install -c conda-forge wand
 We first download the repo from [robustness](https://github.com/hendrycks/robustness) into the main branch. First, rename the robustness-master to robustness. We then execute the corruption.py script provided in the scripts folder to create motion image degradation augmentations, including red, green, blue and grey images.
 ```
 python scripts/corruption.py 
