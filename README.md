@@ -41,9 +41,6 @@ Then convert to jpg
 find data/KITTI_RAW/ -name '*.png' | parallel 'convert -quality 92 -sampling-factor 2x2,1x1,1x1 {.}.png {.}.jpg && rm {}'
 ```
 
-### Testing
-Download the [Cityscape foggy dataset](https://www.cityscapes-dataset.com/downloads/), the [DrivingStereo weather dataset](https://drivingstereo-dataset.github.io/), and the entire [Nuscenens dataset](https://www.nuscenes.org/nuscenes#download).
-
 ## Creating Augmentations For Any Dataset
 Here we can create any augmentations we like before we start training. After creating augmented data following the steps below, you can train with just those augmented images. 
 
@@ -147,6 +144,9 @@ Feel free to vary which augmentations are used a fill list with their mappings a
 
 ## Evaluation
 We test on each dataset:
+### Testing
+Download the [Cityscape foggy dataset](https://www.cityscapes-dataset.com/downloads/), the [DrivingStereo weather dataset](https://drivingstereo-dataset.github.io/), and the entire [Nuscenens dataset](https://www.nuscenes.org/nuscenes#download).
+
 
 
 ### KITTI 
