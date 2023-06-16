@@ -32,13 +32,13 @@ wget -i scripts/kitti_archives_to_download.txt -P data/KITTI_RAW/
 ```
 Then unzip
 ```
-cd kitti_data
+cd data/KITTI_RAW
 unzip "*.zip"
 cd ..
 ```
 Then convert to jpg
 ```
-find kitti_data/ -name '*.png' | parallel 'convert -quality 92 -sampling-factor 2x2,1x1,1x1 {.}.png {.}.jpg && rm {}'
+find data/KITTI_RAW/ -name '*.png' | parallel 'convert -quality 92 -sampling-factor 2x2,1x1,1x1 {.}.png {.}.jpg && rm {}'
 ```
 
 ### Testing
