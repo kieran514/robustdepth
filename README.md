@@ -63,6 +63,8 @@ Please direct over to the [robustness](https://github.com/hendrycks/robustness) 
 ### Fog & Rain
 We first copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering) into the rain-rendering folder, we then execute the script provided in the rain-rendering folder to create NIGHT, DAWN and DUSK image augmentations. 
 
+RAIN_GAN
+
 For fog generation, we were given this script personally and will only share it when I have permission. 
 
 (Make sure to change the datapath)
