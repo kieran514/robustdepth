@@ -48,9 +48,12 @@ Download the [Cityscape foggy dataset](https://www.cityscapes-dataset.com/downlo
 Here we can create any augmentations we like before we start training. After creating augmented data following the steps below, you can train with just those augmented images. 
 
 ### Motion Blur & Snow
-We first copy the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch, we then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations.
-```bash
-python snow_motion.py --data_path {data_directory}
+We first copy the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. First, rename the Automold--Road-Augmentation-Library-master to Automold. Then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations.
+
+```
+cd ..
+cd ..
+python scripts/snow_motion.py --data_path {data_directory}
 ```
 Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) GitHub page for more information.
 
