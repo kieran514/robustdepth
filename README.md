@@ -35,6 +35,7 @@ Then unzip
 cd data/KITTI_RAW
 unzip "*.zip"
 cd ..
+cd ..
 ```
 Then convert to jpg
 ```
