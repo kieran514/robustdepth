@@ -28,7 +28,7 @@ conda activate robustdepth
 We use the [KITTI dataset](http://www.cvlibs.net/download.php?file=raw_data_downloader.zip) and follow the downloading/preprocessing instructions set out by [Monodepth2](https://github.com/nianticlabs/monodepth2).
 Download from scripts;
 ```
-wget -i scripts/kitti_archives_to_download.txt -P kitti_data/
+wget -i scripts/kitti_archives_to_download.txt -P data/KITTI_RAW/
 ```
 Then unzip
 ```
