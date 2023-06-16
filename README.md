@@ -55,7 +55,7 @@ python scripts/snow_motion.py
 Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) GitHub page for more information.
 
 ### Corruptions & RGB-Grey
-We first download the repo from [robustness](https://github.com/hendrycks/robustness) into the main branch. First, rename the robustness-master to robustness. We then execute the corruption.py script provided in the scripts folder to create motion image degradation augmentations, including red, green, blue and grey images.
+We execute the corruption.py script provided in the scripts folder to create motion image degradation augmentations, including red, green, blue and grey images. The code used is a modified version from [robustness](https://github.com/hendrycks/robustness).
 ```
 python scripts/corruption.py 
 ```
