@@ -30,7 +30,7 @@ Download from scripts;
 ```
 wget -i scripts/kitti_archives_to_download.txt -P kitti_data/
 ```
-then unzip,
+Then unzip
 ```
 cd kitti_data
 unzip "*.zip"
