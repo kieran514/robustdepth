@@ -54,7 +54,7 @@ python scripts/snow_motion.py --data_path {data_directory}
 ```
 Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) GitHub page for more information.
 
-### Corruptions & RGBG
+### Corruptions & RGB-Grey
 We first copy the repo from [robustness](https://github.com/hendrycks/robustness) into the robustness folder, we then execute the script provided in the robustness folder to create corruptions, red, blue, green and grey augmentations. (Make sure to change the datapath)
 ```bash
 bash robustness/robustness.sh 
