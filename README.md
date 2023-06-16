@@ -79,8 +79,60 @@ bash CoMoGAN/comogan.sh
 Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) GitHub page for more information.
 
 #### File Format
-The final file format should look like this;
-
+-
+├── KITTI_RAW
+    ├── 2011_09_26
+    ├── 2011_09_28
+    │   ├── 2011_09_28_drive_0001_sync
+    │   ├── 2011_09_28_drive_0002_sync
+    |   │   ├── image_00
+    |   │   ├── image_01
+    |   │   ├── image_02
+    |   │   |   ├── B
+    |   │   |   ├── blur
+    |   │   |   ├── data
+    |   │   |   ├── dawn
+    |   │   |   ├── dawn+fog
+    |   │   |   ├── dawn+rain
+    |   │   |   ├── dawn+rain+fog
+    |   │   |   ├── defocus_blur
+    |   │   |   ├── depth
+    |   │   |   ├── dusk
+    |   │   |   ├── dusk+fog
+    |   │   |   ├── dusk+rain
+    |   │   |   ├── dusk+rain+fog
+    |   │   |   ├── elastic_transform
+    |   │   |   ├── fog
+    |   │   |   ├── fog+night
+    |   │   |   ├── frost
+    |   │   |   ├── G
+    |   │   |   ├── gaussian_noise
+    |   │   |   ├── glass_blur
+    |   │   |   ├── greyscale
+    |   │   |   ├── ground_snow
+    |   │   |   ├── impulse_noise
+    |   │   |   ├── jpeg_compression
+    |   │   |   ├── night
+    |   │   |   ├── pixelate
+    |   │   |   ├── R
+    |   │   |   ├── rain
+    |   │   |   ├── rain+fog
+    |   │   |   ├── rain+fog+night
+    |   │   |   ├── rain_gan
+    |   │   |   ├── rain+night
+    |   │   |   ├── shot_noise
+    |   │   |   ├── snow
+    |   │   |   ├── zoom_blur
+    |   │   |   ├── timestamps.txt
+    |   |   ├── image_03
+    |   │   ├── oxts
+    |   │   ├── velodyne_points
+    │   ├── calib_cam_to_cam.txt
+    │   ├── calib_imu_to_velo.txt
+    │   ├── calib_velo_to_cam.txt
+    ├── 2011_09_29
+    ├── 2011_09_30
+    └── 2011_10_03
 
 ## Pretrained Models
 
