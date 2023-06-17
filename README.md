@@ -47,7 +47,7 @@ Here we can create any augmentations we like before we start training. After cre
 
 ### Motion Blur & Snow
 Had to change opencv version and header version
-We first download the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. First, rename the Automold--Road-Augmentation-Library-master to Automold. Then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations.
+We first download the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. First, rename the Automold--Road-Augmentation-Library-master to Automold. Then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations. (This took approximately 15mins with an AMD Ryzen 3600)
 
 ```
 python scripts/snow_motion.py 
