@@ -226,14 +226,12 @@ python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {wei
 
 ```
 python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --robust_test --eval_split eigen_benchmark
- 
 ```
 
 ### DrivingStereo 
 
 ```
 python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --data_path {data_path} --eval_split foggy
-
 ```
 
 ### NuScenes 
