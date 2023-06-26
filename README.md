@@ -56,6 +56,7 @@ Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--R
 
 ### Corruptions & RGB-Grey
 We execute the corruption.py script provided in the scripts folder to create motion image degradation augmentations, including red, green, blue and grey images. The code used is a modified version from [robustness](https://github.com/hendrycks/robustness).
+(This took approximately 8 hours with an AMD Ryzen 3600)
 ```
 python scripts/corruption.py 
 ```
