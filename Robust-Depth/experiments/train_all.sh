@@ -9,8 +9,8 @@ python3 Robust-Depth/train.py \
 --cuda 0 \
 --weighter 0.01 \
 --disparity_smoothness 0.001 \
---batch_size 1 \
---log_frequency 50 \
+--batch_size 12 \
+--log_frequency 3500 \
 --learning_rate 1e-4 \
 --num_epochs 30 \
 --num_workers 4 \
