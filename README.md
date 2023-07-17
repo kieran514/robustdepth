@@ -3,7 +3,7 @@
 
  >**Self-supervised Monocular Depth Estimation: Let's Talk About The Weather
  >
- >[[PDF](LINK)] [[Video](LINK)]
+ >[[Arxiv](LINK)] [[Project Page](https://kieran514.github.io/Robust-Depth-Project/)]
 
 
 
