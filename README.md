@@ -63,9 +63,10 @@ python scripts/corruption.py
 Please direct over to the [robustness](https://github.com/hendrycks/robustness) GitHub page for more information.
 
 ### Fog & Rain
-We first copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering) into the rain-rendering folder, we then execute the script provided in the rain-rendering folder to create NIGHT, DAWN and DUSK image augmentations. 
+First, we create a rainy version of the KITTI dataset using a GAN. We download CycleGAN from the repo [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). Then inside of datasets, we create a trainA folder with clear images from the NuScenes dataset and rainy images into a folder trainB. The training from A to B using CycleGAN. After 4 epochs we obtained this model [RainGAN](LINKTODRIVE), using this model and the script provided in the folder CycleGAN, we create a rainy version of the KITTI dataset.
 
-RAIN_GAN
+Secondly, we copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering) into the rain-rendering folder, we then execute the script provided in the rain-rendering folder to create NIGHT, DAWN and DUSK image augmentations. 
+
 
 For fog generation, we were given this script personally and will only share it when I have permission. 
 
