@@ -9,6 +9,18 @@
 
 https://github.com/kieran514/Robust-Depth/assets/51883968/1946b0c7-2166-4c7a-95e1-0038eb0acee8
 
+If you find our work useful in your research please consider citing our paper:
+
+```
+@misc{saunders2023selfsupervised,
+      title={Self-supervised Monocular Depth Estimation: Let's Talk About The Weather}, 
+      author={Kieran Saunders and George Vogiatzis and Luis Manso},
+      year={2023},
+      eprint={2307.08357},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
 
 
 ## Installation Setup
