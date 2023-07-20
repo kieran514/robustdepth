@@ -74,7 +74,11 @@ python scripts/corruption.py
 Please direct over to the [robustness](https://github.com/hendrycks/robustness) GitHub page for more information.
 
 ### Fog & Rain
-First, we create a rainy version of the KITTI dataset using a GAN. We download CycleGAN from the repo [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). Then inside of datasets, we create a trainA folder with clear images from the NuScenes dataset and rainy images into a folder trainB. The training from A to B using CycleGAN. After 4 epochs we obtained this model [RainGAN](LINKTODRIVE), using this model and the script provided in the folder CycleGAN, we create a rainy version of the KITTI dataset.
+First, we create a rainy version of the KITTI dataset using a GAN. We download CycleGAN from the repo [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). Here we trained a CycleGAN model to convert clear to rainy using the NuScenes dataset. We have provided the pretrained model for ease of use [RainGAN](https://drive.google.com/drive/folders/1Yb67rvfTyBfwpcoRx98Ubw_KlGPLV3jc?usp=drive_link) which needs to be placed inside pytorch-CycleGAN-and-pix2pix-master/checkpoints/rain_cyclegan, using this model and the script provided, we create a rainy version of the KITTI dataset.
+
+```
+bash scripts/run_rain_sim.sh 
+```
 
 Secondly, we copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering) into the rain-rendering folder, we then execute the script provided in the rain-rendering folder to create NIGHT, DAWN and DUSK image augmentations. 
 
@@ -150,6 +154,14 @@ Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) Git
     ├── 2011_09_30
     └── 2011_10_03
 ```
+#### Adding your own augmentations
+
+Finally, as Robust-Depth can have many further appplications, we provide a simple step by step solution to train with ones own augmetations.
+
+1. do this
+2. do that
+3. do this
+4. train like this (for more info on slecting augmetations to train with see trainig section below)
 
 ## Pretrained Models
 
