@@ -58,7 +58,6 @@ find data/KITTI_RAW/ -name '*.png' | parallel 'convert -quality 92 -sampling-fac
 Here we can create any augmentations we like before we start training. After creating augmented data following the steps below, you can train with just those augmented images. 
 
 ### Motion Blur & Snow
-Had to change opencv version and header version
 We first download the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. First, rename the Automold--Road-Augmentation-Library-master to Automold. Then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations. (This took approximately 20 mins with an AMD Ryzen 3600)
 
 ```
