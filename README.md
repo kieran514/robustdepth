@@ -100,7 +100,12 @@ pip install pyclipper imutils
 Download the Columbia Uni. [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip) and extract files in 3rdparty/rainstreakdb
 
 
-From here we employ that you place our KITTI_RAW.py file into rain-rendering-master/config. From here you can run this script. 
+From here we employ that you place our KITTI_RAW.py (inside scripts folder) file into rain-rendering-master/config/. Now add the following line of code to line 361 in rain_rendering-master/common/generator.py
+```
+depth = cv2.resize(depth, (bg.shape[1], bg.shape[0]))
+```
+
+From here you can run this script. 
 
 
 
