@@ -78,6 +78,10 @@ First, we create a rainy version of the KITTI dataset using a GAN. We download C
 ```
 if label != 'real':
 ```
+And replace line 43 with the below code:
+```
+image_name = '%s.png' % (name)
+```
 using this model and the script provided, we create a rainy version of the KITTI dataset.
 
 ```
