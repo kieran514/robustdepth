@@ -109,7 +109,7 @@ Finaly, you will need particles as provded by [rain streak database](https://www
 
 From here you can run this script. 
 ```
-bash run_kitti_rain.sh
+bash scripts/run_kitti_rain.sh
 ```
 
 
