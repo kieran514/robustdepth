@@ -105,8 +105,12 @@ From here we employ that you place our KITTI_RAW.py (inside scripts folder) file
 depth = cv2.resize(depth, (bg.shape[1], bg.shape[0]))
 ```
 
-From here you can run this script. 
+Finaly, you will need particles as provded by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have prided the particle files i have used whioch should be extrated in /rain-rendering-master/data/particles/ [found here](https://drive.google.com/file/d/1-nmBojZDz_-FXkUbreIyKOQlxuBeVLBp/view?usp=drive_link).
 
+From here you can run this script. 
+```
+bash run_kitti_rain.sh
+```
 
 
 For fog generation, we were given this script personally and will only share it when I have permission. 
