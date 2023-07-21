@@ -79,8 +79,12 @@ First, we create a rainy version of the KITTI dataset using a GAN. We download C
 ```
 bash scripts/run_rain_sim.sh 
 ```
+Next, we must create a depth version of the KITTI dataset using pretrained weights from [Monodepth2](https://storage.googleapis.com/niantic-lon-static/research/monodepth2/mono%2Bstereo_640x192.zip). These pretrained weights are placed into pretrained. Then we simply run this script.
+```
+python depth_simple.py
+```
 
-Secondly, we copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering), Following the provided steps on their GitHub page, create 
+Now, we copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering), Following the provided steps on their GitHub page, create 
 
 ```
 conda create --name py36_weatheraugment python=3.6 opencv numpy matplotlib tqdm imageio pillow natsort glob2 scipy scikit-learn scikit-image pexpect -y
@@ -90,6 +94,9 @@ conda activate py36_weatheraugment
 pip install pyclipper imutils
 ```
 Download the Columbia Uni. [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip) and extract files in 3rdparty/rainstreakdb
+
+
+From here we employ that you place our KITTI_RAW.py file into rain-rendering-master/config. From here you can run this script. 
 
 
 
