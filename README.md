@@ -78,11 +78,6 @@ First, we create a rainy version of the KITTI dataset using a GAN. We download C
 ```
 if label != 'real':
 ```
-Next, add the following line of code at line 64 in pytorch-CycleGAN-and-pix2pix-master/util/util.py
-```
-    if aspect_ratio == 1.0:
-        image_pil = image_pil.resize((h, w), Image.BICUBIC)
-```
 using this model and the script provided, we create a rainy version of the KITTI dataset.
 
 ```
