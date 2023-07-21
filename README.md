@@ -73,14 +73,24 @@ python scripts/corruption.py
 ```
 Please direct over to the [robustness](https://github.com/hendrycks/robustness) GitHub page for more information.
 
-### Fog & Rain
+### Rain & Fog
 First, we create a rainy version of the KITTI dataset using a GAN. We download CycleGAN from the repo [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). Here we trained a CycleGAN model to convert clear to rainy using the NuScenes dataset. We have provided the pretrained model for ease of use [RainGAN](https://drive.google.com/drive/folders/1Yb67rvfTyBfwpcoRx98Ubw_KlGPLV3jc?usp=drive_link) which needs to be placed inside pytorch-CycleGAN-and-pix2pix-master/checkpoints/rain_cyclegan, using this model and the script provided, we create a rainy version of the KITTI dataset.
 
 ```
 bash scripts/run_rain_sim.sh 
 ```
 
-Secondly, we copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering) into the rain-rendering folder, we then execute the script provided in the rain-rendering folder to create NIGHT, DAWN and DUSK image augmentations. 
+Secondly, we copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering), Following the provided steps on their GitHub page, create 
+
+```
+conda create --name py36_weatheraugment python=3.6 opencv numpy matplotlib tqdm imageio pillow natsort glob2 scipy scikit-learn scikit-image pexpect -y
+
+conda activate py36_weatheraugment
+
+pip install pyclipper imutils
+```
+Download the Columbia Uni. [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip) and extract files in 3rdparty/rainstreakdb
+
 
 
 For fog generation, we were given this script personally and will only share it when I have permission. 
