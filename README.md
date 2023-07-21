@@ -108,13 +108,18 @@ From here we employ that you place our KITTI_RAW.py (inside scripts folder) file
 ```
 depth = cv2.resize(depth, (bg.shape[1], bg.shape[0]))
 ```
-Also replace line 210 with the below code
+Also, replace line 209 with the below code
 ```
 out_dir = os.path.join(out_seq_dir, 'image_02/', weather)
 
 ```
+324 replace with 
+```
+out_rainy_path = os.path.join(out_dir, '{}.png'.format(file_name[:-4]))
+```
+and comment out 457 and 468
 
-Finaly, you will need particles as provded by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have prided the particle files i have used whioch should be extrated in /rain-rendering-master/data/particles/ [found here](https://drive.google.com/file/d/1-nmBojZDz_-FXkUbreIyKOQlxuBeVLBp/view?usp=drive_link).
+Finally, you will need particles as provided by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have prided the particle files I have used which should be extracted in /rain-rendering-master/data/particles/ [found here](https://drive.google.com/file/d/1-nmBojZDz_-FXkUbreIyKOQlxuBeVLBp/view?usp=drive_link).
 
 From here you can run this script. 
 ```
