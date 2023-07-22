@@ -128,8 +128,16 @@ bash scripts/run_kitti_rain.sh
 Please direct over to the [rain-rendering](https://github.com/astra-vision/rain-rendering) GitHub page for more information.
 
 ### Night, Dawn & Dusk
-We first copy the repo from [CoMoGAN](https://github.com/astra-vision/CoMoGAN) into the CoMoGAN folder, we then execute the script provided in the CoMoGAN folder to create NIGHT, DAWN and DUSK image augmentations. (Make sure to change the datapath)
-```bash
+We first copy the repo from [CoMoGAN](https://github.com/astra-vision/CoMoGAN), we then create a file inside CoMoGAN-main called logs and place pretrained weights inside. (CoMoGAN-main/logs/pretrained/...)
+Now we must add the following code to line 13 in CoMoGAN-main/data/base_dataset.py.
+```
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+```
+
+the script provided in the CoMoGAN folder to create NIGHT, DAWN and DUSK image augmentations. (Make sure to change the datapath)
+```
 bash CoMoGAN/comogan.sh 
 ```
 Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) GitHub page for more information.
