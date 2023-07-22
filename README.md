@@ -73,7 +73,7 @@ python scripts/corruption.py
 ```
 Please direct over to the [robustness](https://github.com/hendrycks/robustness) GitHub page for more information.
 
-### Rain & Fog
+### Rain
 First, we create a rainy version of the KITTI dataset using a GAN. We download CycleGAN from the repo [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). Here we trained a CycleGAN model to convert clear to rainy using the NuScenes dataset. We have provided the pretrained model for ease of use [RainGAN](https://drive.google.com/drive/folders/1Yb67rvfTyBfwpcoRx98Ubw_KlGPLV3jc?usp=drive_link) which needs to be placed inside pytorch-CycleGAN-and-pix2pix-master/checkpoints/rain_cyclegan. Before we continue, please locate pytorch-CycleGAN-and-pix2pix-master/util/visualizer.py and add the following if statement on line 41 (indent until line 50). 
 ```
 if label != 'real':
@@ -125,14 +125,6 @@ From here you can run this script. (max_thread on line 176 is set to 10 change t
 ```
 bash scripts/run_kitti_rain.sh
 ```
-
-
-For fog generation, we were given this script personally and will only share it when I have permission. 
-
-(Make sure to change the datapath)
-```bash
-bash rain-rendering/rain-rendering.sh 
-```
 Please direct over to the [rain-rendering](https://github.com/astra-vision/rain-rendering) GitHub page for more information.
 
 ### Night, Dawn & Dusk
@@ -141,6 +133,15 @@ We first copy the repo from [CoMoGAN](https://github.com/astra-vision/CoMoGAN) i
 bash CoMoGAN/comogan.sh 
 ```
 Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) GitHub page for more information.
+
+### Fog 
+For fog generation, we were given this script personally:
+
+
+(Make sure to change the datapath)
+```bash
+bash rain-rendering/rain-rendering.sh 
+```
 
 #### File Format
 ```
