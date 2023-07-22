@@ -138,7 +138,7 @@ logger = logging.getLogger(__name__)
 
 the script provided in the CoMoGAN folder to create NIGHT, DAWN and DUSK image augmentations. (Make sure to change the datapath)
 ```
-bash CoMoGAN/comogan.sh 
+bash scripts/comogan.sh 
 ```
 Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) GitHub page for more information.
 
