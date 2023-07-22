@@ -224,10 +224,7 @@ class MonoDataset(data.Dataset):
                             inputs[("color_" + n, im, i)] = inputs[(n, im, i)]
                         else:
                             f = color_aug(f)
-                            if spec in ['fog', 'fog+night', 'rain+fog', 'rain+fog+night', 'dusk+fog', 'dawn+fog', 'dawn+rain+fog', 'dusk+rain+fog']:
-                                img_ = self.to_tensor(f)[[2,1,0],:,:]
-                            else:
-                                img_ = self.to_tensor(f)
+                            img_ = self.to_tensor(f)
                             inputs[("color_" + n, im, i)] = self.tile_crop(self.vertical_crop(erase_aug(img_), do_vertical, rand_w), do_tiling, selection, order)
                     elif small:
                         if i != -1:
@@ -247,8 +244,6 @@ class MonoDataset(data.Dataset):
                             if inputs[(n, im, i)].sum() == 0:
                                 inputs[("color_" + n, im, i)] = inputs[(n, im, i)]
                             else:
-                                if spec in ['fog', 'fog+night', 'rain+fog', 'rain+fog+night', 'dusk+fog', 'dawn+fog', 'dawn+rain+fog', 'dusk+rain+fog']:
-                                    inputs[(n, im, i)] = inputs[(n, im, i)][[2,1,0],:,:]
                                 inputs[("color_" + n, im, i)] = self.tile_crop(self.vertical_crop(erase_aug(inputs[(n, im, i)]), do_vertical, rand_w), do_tiling, selection, order)
                         else:
                             inputs[("color_" + n, im, -1)] = 0
