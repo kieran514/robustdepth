@@ -209,7 +209,9 @@ bash scripts/fogOffical.sh
 
 The models can be trained on the KITTI dataset by running: 
 
-```bash
+```
+cd Robust-Depth
+
 bash experiments/train.sh
 ```
 The hyperparameters are defined in the script file and set at their defaults as stated in the paper.
@@ -221,12 +223,11 @@ Feel free to vary which augmentations are used.
 Finally, as Robust-Depth can have many further applications, we provide a simple step-by-step solution to train with one's own augmentations. Here we will add a near-infrared augmentation as an example. 
 
 1. First create the augmentation on the entire KITTI dataset in the same format as above (in this case called NIR)
-2. Enter options.py and add  self.parser.add_argument("--do_NIR", help="NIR augmentation", action="store_true")
-3. Add do_NIR_aug = self.opt.NIR to line 155 and line 181
-4. Add NIR:{self.opt.NIR} to line 233
-5. Add do_NIR_aug=False to line 70 and self.do_NIR_aug = do_NIR_aug to line 110
-6. Add this to line 303 'NIR':self.do_NIR_aug (where 'NIR' is the augmented images folder name)
-7. Now inside the training split add --do_NIR (removing other augmentations if you wish) and proceed with training
+2. Enter Robust-Depth/options.py and add  self.parser.add_argument("--do_NIR", help="NIR augmentation", action="store_true")
+3. Inside Robust-Depth/trainer.py, add do_NIR_aug = self.opt.NIR to line 155 and line 181. Then add NIR:{self.opt.NIR} to line 233
+4. Inside Robust-Depth/datasets/mono_dataset.py, add do_NIR_aug=False to line 70 and self.do_NIR_aug = do_NIR_aug to line 110
+5. Inside Robust-Depth/datasets/mono_dataset.py, add 'NIR':self.do_NIR_aug to line 303 (where 'NIR' is the augmented images folder name)
+6. Now inside the Robust-Depth/experiments/train.sh split add --do_NIR (removing other augmentations if you wish) and proceed with training
 
 ## Evaluation
 We test on each dataset:
