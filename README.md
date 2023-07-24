@@ -58,7 +58,7 @@ find data/KITTI_RAW/ -name '*.png' | parallel 'convert -quality 92 -sampling-fac
 Here, we have the flexibility to create any augmentations we desire before commencing the training process. Once we have generated the augmented data using the steps outlined below, we can proceed to train using only those augmented images.
 
 ### Motion Blur & Snow
-We first download the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. First, rename the Automold--Road-Augmentation-Library-master to Automold. Then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations. (This took approximately 20 mins with an AMD Ryzen 3600)
+We first download the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. First, rename the Automold--Road-Augmentation-Library-master to Automold. Then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations. 
 
 Firstly, we need to download the repository from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. After downloading, rename the folder "Automold--Road-Augmentation-Library-master" to simply "Automold." Next, proceed to execute the "snow_motion.py" script located in the scripts folder. This will generate motion blur and snow augmentations.
 ```
@@ -198,26 +198,12 @@ bash scripts/fogOffical.sh
     ├── 2011_09_30
     └── 2011_10_03
 ```
-#### Adding your own augmentations
-
-Finally, as Robust-Depth can have many further applications, we provide a simple step-by-step solution to train with one's own augmentations.
-
-1. do this
-2. do that
-3. do this
-4. train like this (for more info on selecting augmentations to train with see training section below)
-
 ## Pretrained Models
 
 | Model Name          | *Sunny* Abs_Rel | *Bad Weather* Abs_Rel | Model resolution  | Model  |
 |-------------------------|-------------------|--------------------------|-----------------|------|
 | [`ViT`](https://drive.google.com/drive/folders/1oKT2oAPp-7altFTvPKR2d7FdgXN9xMG3?usp=sharing)          | 0.100 | 0.114 | 640 x 192                | ViT        |
 | [`Resnet18`](https://drive.google.com/drive/folders/1QSHZjOk6Ufw52BGjJmuxV7PJQNisH5Kk?usp=sharing)        | 0.115 | 0.133 | 640 x 192                |  Resnet18          |
-
-
-
-<!-- [ViT](https://drive.google.com/drive/folders/1oKT2oAPp-7altFTvPKR2d7FdgXN9xMG3?usp=sharing)
-[Resnet18](https://drive.google.com/drive/folders/1QSHZjOk6Ufw52BGjJmuxV7PJQNisH5Kk?usp=sharing) -->
 
 ## Training
 
@@ -226,18 +212,26 @@ The models can be trained on the KITTI dataset by running:
 ```bash
 bash experiments/train.sh
 ```
-
-The hyperparameters are defined in each script file and set at their defaults as stated in the paper.
+The hyperparameters are defined in the script file and set at their defaults as stated in the paper.
 
 Feel free to vary which augmentations are used.
 
+#### Adding your own augmentations
+
+Finally, as Robust-Depth can have many further applications, we provide a simple step-by-step solution to train with one's own augmentations. Here we will add a near-infrared augmentation as an example. 
+
+1. First create the augmentation on the entire KITTI dataset in the same format as above (in this case called NIR)
+2. Enter options.py and add  self.parser.add_argument("--do_NIR", help="NIR augmentation", action="store_true")
+3. Add do_NIR_aug = self.opt.NIR to line 155 and line 181
+4. Add NIR:{self.opt.NIR} to line 233
+5. Add do_NIR_aug=False to line 70 and self.do_NIR_aug = do_NIR_aug to line 110
+6. Add this to line 303 'NIR':self.do_NIR_aug (where 'NIR' is the augmented images folder name)
+7. Now inside the training split add --do_NIR (removing other augmentations if you wish) and proceed with training
 
 ## Evaluation
 We test on each dataset:
 ### Testing
 Download the [Cityscape foggy dataset](https://www.cityscapes-dataset.com/downloads/), the [DrivingStereo weather dataset](https://drivingstereo-dataset.github.io/), and the entire [Nuscenens dataset](https://www.nuscenes.org/nuscenes#download).
-
-
 
 ### KITTI 
 
