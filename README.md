@@ -9,7 +9,7 @@
 
 https://github.com/kieran514/Robust-Depth/assets/51883968/1946b0c7-2166-4c7a-95e1-0038eb0acee8
 
-If you find our work useful in your research please consider citing our paper:
+If you find our work useful in your research, kindly consider citing our paper:
 
 ```
 @misc{saunders2023selfsupervised,
@@ -49,32 +49,32 @@ unzip "*.zip"
 cd ..
 cd ..
 ```
-Then convert to jpg
+Then convert all images to jpg
 ```
 find data/KITTI_RAW/ -name '*.png' | parallel 'convert -quality 92 -sampling-factor 2x2,1x1,1x1 {.}.png {.}.jpg && rm {}'
 ```
 
 ## Creating Augmentations For Any Dataset
-Here we can create any augmentations we like before we start training. After creating augmented data following the steps below, you can train with just those augmented images. 
+Here, we have the flexibility to create any augmentations we desire before commencing the training process. Once we have generated the augmented data using the steps outlined below, we can proceed to train using only those augmented images.
 
 ### Motion Blur & Snow
 We first download the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. First, rename the Automold--Road-Augmentation-Library-master to Automold. Then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations. (This took approximately 20 mins with an AMD Ryzen 3600)
 
+Firstly, we need to download the repository from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. After downloading, rename the folder "Automold--Road-Augmentation-Library-master" to simply "Automold." Next, proceed to execute the "snow_motion.py" script located in the scripts folder. This will generate motion blur and snow augmentations.
 ```
 python scripts/snow_motion.py 
 ```
 Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) GitHub page for more information.
 
 ### Corruptions & RGB-Grey
-We execute the corruption.py script provided in the scripts folder to create motion image degradation augmentations, including red, green, blue and grey images. The code used is a modified version from [robustness](https://github.com/hendrycks/robustness).
-(This took approximately 8 hours with an AMD Ryzen 3600)
+We execute the corruption.py script provided in the scripts folder to create image degradation augmentations, including red, green, blue and grey images. The code used is a modified version from [robustness](https://github.com/hendrycks/robustness).
 ```
 python scripts/corruption.py 
 ```
 Please direct over to the [robustness](https://github.com/hendrycks/robustness) GitHub page for more information.
 
 ### Rain
-First, we create a rainy version of the KITTI dataset using a GAN. We download CycleGAN from the repo [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). Here we trained a CycleGAN model to convert clear to rainy using the NuScenes dataset. We have provided the pretrained model for ease of use [RainGAN](https://drive.google.com/drive/folders/1Yb67rvfTyBfwpcoRx98Ubw_KlGPLV3jc?usp=drive_link) which needs to be placed inside pytorch-CycleGAN-and-pix2pix-master/checkpoints/rain_cyclegan. Before we continue, please locate pytorch-CycleGAN-and-pix2pix-master/util/visualizer.py and add the following if statement on line 41 (indent until line 50). 
+First, we create a rainy version of the KITTI dataset using a GAN. We download CycleGAN from the repo [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). Here we trained a CycleGAN model to convert clear to rainy using the NuScenes dataset. We have provided the pretrained model for ease of use [RainGAN](https://drive.google.com/drive/folders/1Yb67rvfTyBfwpcoRx98Ubw_KlGPLV3jc?usp=drive_link) which needs to be placed inside pytorch-CycleGAN-and-pix2pix-master/checkpoints/rain_cyclegan/. Before we continue, please locate pytorch-CycleGAN-and-pix2pix-master/util/visualizer.py and add the following if statement on line 41 (indent until line 50). 
 ```
 if label != 'real':
 ```
@@ -82,18 +82,15 @@ And replace line 43 with the below code:
 ```
 image_name = '%s.png' % (name)
 ```
-using this model and the script provided, we create a rainy version of the KITTI dataset.
-
+Using this model and the script provided, we create a rainy version of the KITTI dataset.
 ```
 bash scripts/run_rain_sim.sh 
 ```
-Next, we must create a depth version of the KITTI dataset using pretrained weights from [Monodepth2](https://storage.googleapis.com/niantic-lon-static/research/monodepth2/mono%2Bstereo_640x192.zip). These pretrained weights are placed into pretrained. Then we simply run this script.
+Next, we must create a depth version of the KITTI dataset using pretrained weights from [Monodepth2](https://storage.googleapis.com/niantic-lon-static/research/monodepth2/mono%2Bstereo_640x192.zip). These pretrained weights are placed into the folder pretrained. Then we simply run this script.
 ```
 python depth_simple.py
 ```
-
-Now, we copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering), Following the provided steps on their GitHub page, create 
-
+Now, we copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering), Following the provided steps on their GitHub page, create the required environment: 
 ```
 conda create --name py36_weatheraugment python=3.6 opencv numpy matplotlib tqdm imageio pillow natsort glob2 scipy scikit-learn scikit-image pexpect -y
 
@@ -103,54 +100,48 @@ pip install pyclipper imutils
 ```
 Download the Columbia Uni. [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip) and extract files in 3rdparty/rainstreakdb
 
-
 From here we employ that you place our KITTI_RAW.py (inside scripts folder) file into rain-rendering-master/config/. Now add the following line of code to line 361 in rain_rendering-master/common/generator.py
 ```
 depth = cv2.resize(depth, (bg.shape[1], bg.shape[0]))
 ```
-Also, replace line 209 with the below code
+Also, replace line 209 with the below code:
 ```
 out_dir = os.path.join(out_seq_dir, 'image_02/', weather)
 
 ```
-324 replace with 
+Additionally, replace line 324 with; 
 ```
 out_rainy_path = os.path.join(out_dir, '{}.png'.format(file_name[:-4]))
 ```
-and comment out 457 and 468
+and comment out lines 457 and 468.
 
 Finally, you will need particles as provided by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have prided the particle files I have used which should be extracted in /rain-rendering-master/data/particles/ [found here](https://drive.google.com/file/d/1-nmBojZDz_-FXkUbreIyKOQlxuBeVLBp/view?usp=drive_link).
 
-From here you can run this script. (max_thread on line 176 is set to 10 change this if you wish)
+From here you can run this script. (max_thread on line 176 is set to 10, change this if you wish)
 ```
 bash scripts/run_kitti_rain.sh
 ```
 Please direct over to the [rain-rendering](https://github.com/astra-vision/rain-rendering) GitHub page for more information.
 
 ### Night, Dawn & Dusk
-We first copy the repo from [CoMoGAN](https://github.com/astra-vision/CoMoGAN), we then create a file inside CoMoGAN-main called logs and place pretrained weights inside. (CoMoGAN-main/logs/pretrained/...)
+We first copy the repo from [CoMoGAN](https://github.com/astra-vision/CoMoGAN), we then create a file inside CoMoGAN-main called logs and place pretrained weights provided by CoMoGAN inside (CoMoGAN-main/logs/pretrained/...).
 Now we must add the following code to line 13 in CoMoGAN-main/data/base_dataset.py.
 ```
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 ```
-
-the script provided in the CoMoGAN folder to create NIGHT, DAWN and DUSK image augmentations. (Make sure to change the datapath)
+Next, run the comogan.sh script to create Night, Dawn and Dusk augmentations on the clear and rain images.
 ```
 bash scripts/comogan.sh 
 ```
 Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) GitHub page for more information.
 
 ### Fog 
-For fog generation, we were given this script personally:
-
-
-(Make sure to change the datapath)
-```bash
-bash rain-rendering/rain-rendering.sh 
+For fog generation, we have used a script inspired by [rain-rendering](https://github.com/astra-vision/rain-rendering), which will create a foggy augmentation for rain, night, clear, dawn, dusk, dawn+rain, night+rain, dusk+rain images.
 ```
-
+bash scripts/fogOffical.sh 
+```
 #### File Format
 ```
 ├── KITTI_RAW
@@ -209,12 +200,12 @@ bash rain-rendering/rain-rendering.sh
 ```
 #### Adding your own augmentations
 
-Finally, as Robust-Depth can have many further appplications, we provide a simple step by step solution to train with ones own augmetations.
+Finally, as Robust-Depth can have many further applications, we provide a simple step-by-step solution to train with one's own augmentations.
 
 1. do this
 2. do that
 3. do this
-4. train like this (for more info on slecting augmetations to train with see trainig section below)
+4. train like this (for more info on selecting augmentations to train with see training section below)
 
 ## Pretrained Models
 
