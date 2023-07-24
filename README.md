@@ -216,7 +216,7 @@ The hyperparameters are defined in the script file and set at their defaults as 
 
 Feel free to vary which augmentations are used.
 
-#### Adding your own augmentations
+### Adding your own augmentations
 
 Finally, as Robust-Depth can have many further applications, we provide a simple step-by-step solution to train with one's own augmentations. Here we will add a near-infrared augmentation as an example. 
 
