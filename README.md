@@ -214,7 +214,9 @@ cd Robust-Depth
 bash experiments/train_all.sh
 ```
 The hyperparameters are defined in the script file and set at their defaults as stated in the paper.
+
 To train with the vision transformer please add --ViT to train_all.sh and see MonoViT's repository for any issues.
+
 Feel free to vary which augmentations are used.
 
 ### Adding your own augmentations
