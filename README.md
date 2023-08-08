@@ -208,11 +208,10 @@ bash scripts/fogOffical.sh
 ## Training
 
 The models can be trained on the KITTI dataset by running: 
-
 ```
 cd Robust-Depth
 
-bash experiments/train.sh
+bash experiments/train_all.sh
 ```
 The hyperparameters are defined in the script file and set at their defaults as stated in the paper.
 
@@ -230,9 +229,10 @@ Finally, as Robust-Depth can have many further applications, we provide a simple
 6. Now inside the Robust-Depth/experiments/train.sh split add --do_NIR (removing other augmentations if you wish) and proceed with training
 
 ## Evaluation
-We test on each dataset:
+We provide the evaluation for the KITTI dataset 
+
 ### Testing
-Download the [Cityscape foggy dataset](https://www.cityscapes-dataset.com/downloads/), the [DrivingStereo weather dataset](https://drivingstereo-dataset.github.io/), and the entire [Nuscenens dataset](https://www.nuscenes.org/nuscenes#download).
+Evaluation for Cityscape Foggy, DrivingStereo and NuScenes-Night coming soon. 
 
 ### KITTI 
 
@@ -245,11 +245,6 @@ python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {wei
 ```
 python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --robust_test
 ```
-### KITTI Robust specific
-
-```
-python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --robust_test --robust_augment blur
-```
 
 ### KITTI Benchmark Robust
 
@@ -257,23 +252,13 @@ python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {wei
 python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --robust_test --eval_split eigen_benchmark
 ```
 
-### DrivingStereo 
+### KITTI Robust specific
 
 ```
-python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --data_path {data_path} --eval_split foggy
+python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --robust_test --robust_augment blur
 ```
 
-### NuScenes 
 
-```
-python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --data_path {data_path} --eval_split nuScenes_test_night
-```
-
-### Foggy CityScape 
-
-```
-python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --eval_split cityscape --data_path {data_path} --foggy
-```
 
 
 ## References
