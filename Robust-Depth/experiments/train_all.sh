@@ -1,7 +1,7 @@
 python3 Robust-Depth/train.py \
 --model_name Robust-Depth \
 --dataset kitti \
---data_path /media/kieran/SSDNEW/Base-Model/data/KITTI_RAW \
+--data_path /data/KITTI_RAW \
 --eval_split eigen_zhou \
 --split eigen_zhou \
 --height 192 \
