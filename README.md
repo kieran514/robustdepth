@@ -115,7 +115,7 @@ out_rainy_path = os.path.join(out_dir, '{}.png'.format(file_name[:-4]))
 ```
 and comment out lines 457 and 468.
 
-Finally, you will need particles as provided by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have prided the particle files I have used which should be extracted in /rain-rendering-master/data/particles/ [found here](https://drive.google.com/file/d/1-nmBojZDz_-FXkUbreIyKOQlxuBeVLBp/view?usp=drive_link).
+Finally, you will need particles as provided by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have provided the particle files which should be extracted in /rain-rendering-master/data/particles/ [found here](https://drive.google.com/file/d/1-nmBojZDz_-FXkUbreIyKOQlxuBeVLBp/view?usp=drive_link).
 
 From here you can run this script. (max_thread on line 176 is set to 10, change this if you wish)
 ```
@@ -124,7 +124,7 @@ bash scripts/run_kitti_rain.sh
 Please direct over to the [rain-rendering](https://github.com/astra-vision/rain-rendering) GitHub page for more information.
 
 ### Night, Dawn & Dusk
-We first copy the repository from [CoMoGAN](https://github.com/astra-vision/CoMoGAN), we then create a file inside CoMoGAN-main called logs and place pretrained weights provided by CoMoGAN inside (CoMoGAN-main/logs/pretrained/...).
+We first copy the repository from [CoMoGAN](https://github.com/astra-vision/CoMoGAN), we then create a file inside CoMoGAN-main called logs and place pretrained weights provided by CoMoGAN inside (CoMoGAN-main/logs/pretrained/).
 Now we must add the following code to line 13 in CoMoGAN-main/data/base_dataset.py.
 ```
 import logging
@@ -222,14 +222,14 @@ Feel free to vary which augmentations are used.
 Finally, as Robust-Depth can have many further applications, we provide a simple step-by-step solution to train with one's own augmentations. Here we will add a near-infrared augmentation as an example. 
 
 1. First create the augmentation on the entire KITTI dataset in the same format as above (in this case called NIR)
-2. Enter Robust-Depth/options.py and add  self.parser.add_argument("--do_NIR", help="NIR augmentation", action="store_true")
+2. Enter Robust-Depth/options.py and add self.parser.add_argument("--do_NIR", help="NIR augmentation", action="store_true")
 3. Inside Robust-Depth/trainer.py, add do_NIR_aug = self.opt.NIR to line 155 and line 181. Then add NIR:{self.opt.NIR} to line 233
 4. Inside Robust-Depth/datasets/mono_dataset.py, add do_NIR_aug=False to line 70 and self.do_NIR_aug = do_NIR_aug to line 110
 5. Inside Robust-Depth/datasets/mono_dataset.py, add 'NIR':self.do_NIR_aug to line 303 (where 'NIR' is the augmented images folder name)
-6. Now inside the Robust-Depth/experiments/train.sh split add --do_NIR (removing other augmentations if you wish) and proceed with training
+6. Now inside the Robust-Depth/experiments/train_all.sh split add --do_NIR (removing other augmentations if you wish) and proceed with training
 
 ## Evaluation
-We provide the evaluation for the KITTI dataset 
+We provide the evaluation for the KITTI dataset. To create the necessary ground truth for the KITTI dataset 
 
 ### Testing
 Evaluation for Cityscape Foggy, DrivingStereo and NuScenes-Night coming soon. 
@@ -237,25 +237,25 @@ Evaluation for Cityscape Foggy, DrivingStereo and NuScenes-Night coming soon.
 ### KITTI 
 
 ```
-python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory}
+python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory}
 ```
 
 ### KITTI Robust
 
 ```
-python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --robust_test
+python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --robust_test
 ```
 
 ### KITTI Benchmark Robust
 
 ```
-python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --robust_test --eval_split eigen_benchmark
+python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --robust_test --eval_split eigen_benchmark
 ```
 
 ### KITTI Robust specific
 
 ```
-python Robust-Depth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_directory} --robust_test --robust_augment blur
+python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --robust_test --robust_augment blur
 ```
 
 
