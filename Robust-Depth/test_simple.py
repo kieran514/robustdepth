@@ -1,24 +1,3 @@
-# Please run in terminal:
-
-# conda create -n robust-depth python pytorch=1.8.0 torchvision cudatoolkit=11.1 -c pytorch -c nvidia
-
-# conda activate robust-depth
-
-# conda install -c conda-forge matplotlib
-
-# conda install -c conda-forge tqdm
-
-# conda install -c conda-forge timm
-
-# conda install -c conda-forge einops
-
-# conda install -c esri mmcv-full
-
-# conda install -c esri mmsegmentation 
-
-# Then you can run
-# python test_simple.py --image_path /media/kieran/SSDNEW/Robust-Depth-Master/images_test --save_path /media/kieran/SSDNEW/Robust-Depth-Master/images_test --ext png --weights /media/kieran/SSDNEW/Robust-Depth-Master/pretrained/Robust-Depth/weights_best
-# python test_simple.py --image_path /media/kieran/SSDNEW/Robust-Depth-Master/images_test --save_path /media/kieran/SSDNEW/Robust-Depth-Master/images_test --ext png --vit --weights /media/kieran/SSDNEW/Robust-Depth-Master/pretrained/Robust-Depth-MonoVit/weights_best
 from __future__ import absolute_import, division, print_function
 
 import os
