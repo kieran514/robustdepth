@@ -40,15 +40,17 @@ if __name__ == "__main__":
 
         if sync[-4:] == 'sync':
             img_path = os.path.join(sync, 'image_02/data')
-            severity = random.randint(1, 5)
+            severity_origin = random.randint(1, 5)
             for image in sorted(os.listdir(img_path)):
                 final_img_path = os.path.join(img_path, image)
 
                 checker = os.path.join(seq, sync) + " {:010d}".format(int(image[:-4])) + ' l\n'
 
                 if checker in test:
-                    severity=5
-
+                     severity=5
+                else:
+                     severity = severity_origin
+                     
                 im = Image.open(final_img_path)
                 np_im = np.array(im)
 

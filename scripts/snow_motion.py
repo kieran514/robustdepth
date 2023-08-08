@@ -23,7 +23,6 @@ random.seed(42)
 import time
 
 if __name__ == "__main__":
-    start = time.time()
 
     sequence = ['2011_09_26/',
             '2011_09_28/',
@@ -37,7 +36,7 @@ if __name__ == "__main__":
     def process(sync):
         if sync[-4:] == 'sync':
             img_path = os.path.join(sync, 'image_02/data')
-            severity = random.random()
+            severity_origin = random.random()
             for image in sorted(os.listdir(img_path)):
                 final_img_path = os.path.join(img_path, image)
 
@@ -45,6 +44,9 @@ if __name__ == "__main__":
 
                 if checker in test:
                     severity=1
+                else:
+                    severity = severity_origin
+
 
                 im = Image.open(final_img_path)
 
