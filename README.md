@@ -42,14 +42,14 @@ Download from scripts;
 ```
 wget -i scripts/kitti_archives_to_download.txt -P data/KITTI_RAW/
 ```
-Then unzip
+Then unzip the downloaded files;
 ```
 cd data/KITTI_RAW
 unzip "*.zip"
 cd ..
 cd ..
 ```
-Then convert all images to jpg
+Then convert all images to jpg;
 ```
 find data/KITTI_RAW/ -name '*.png' | parallel 'convert -quality 92 -sampling-factor 2x2,1x1,1x1 {.}.png {.}.jpg && rm {}'
 ```
@@ -58,7 +58,7 @@ find data/KITTI_RAW/ -name '*.png' | parallel 'convert -quality 92 -sampling-fac
 Here, we have the flexibility to create any augmentations we desire before commencing the training process. Once we have generated the augmented data using the steps outlined below, we can proceed to train using only those augmented images.
 
 ### Motion Blur & Snow
-We first download the repo from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. First, rename the Automold--Road-Augmentation-Library-master to Automold. Then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations. 
+We first download the repository from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. First, rename the Automold--Road-Augmentation-Library-master to Automold. Then execute the snow_motion.py script provided in the scripts folder to create motion blur and snow augmentations. 
 
 Firstly, we need to download the repository from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. After downloading, rename the folder "Automold--Road-Augmentation-Library-master" to simply "Automold." Next, proceed to execute the "snow_motion.py" script located in the scripts folder. This will generate motion blur and snow augmentations.
 ```
@@ -74,7 +74,7 @@ python scripts/corruption.py
 Please direct over to the [robustness](https://github.com/hendrycks/robustness) GitHub page for more information.
 
 ### Rain
-First, we create a rainy version of the KITTI dataset using a GAN. We download CycleGAN from the repo [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). Here we trained a CycleGAN model to convert clear to rainy using the NuScenes dataset. We have provided the pretrained model for ease of use [RainGAN](https://drive.google.com/drive/folders/1Yb67rvfTyBfwpcoRx98Ubw_KlGPLV3jc?usp=drive_link) which needs to be placed inside pytorch-CycleGAN-and-pix2pix-master/checkpoints/rain_cyclegan/. Before we continue, please locate pytorch-CycleGAN-and-pix2pix-master/util/visualizer.py and add the following if statement on line 41 (indent until line 50). 
+First, we create a rainy version of the KITTI dataset using a GAN. We download CycleGAN from the repository [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). Here we trained a CycleGAN model to convert clear to rainy using the NuScenes dataset. We have provided the pretrained model for ease of use [RainGAN](https://drive.google.com/drive/folders/1Yb67rvfTyBfwpcoRx98Ubw_KlGPLV3jc?usp=drive_link) which needs to be placed inside pytorch-CycleGAN-and-pix2pix-master/checkpoints/rain_cyclegan/. Before we continue, please locate pytorch-CycleGAN-and-pix2pix-master/util/visualizer.py and add the following if statement on line 41 (indent until line 50). 
 ```
 if label != 'real':
 ```
@@ -90,7 +90,7 @@ Next, we must create a depth version of the KITTI dataset using pretrained weigh
 ```
 python depth_simple.py
 ```
-Now, we copy the repo from [rain-rendering](https://github.com/astra-vision/rain-rendering), Following the provided steps on their GitHub page, create the required environment: 
+Now, we copy the repository from [rain-rendering](https://github.com/astra-vision/rain-rendering), Following the provided steps on their GitHub page, create the required environment: 
 ```
 conda create --name py36_weatheraugment python=3.6 opencv numpy matplotlib tqdm imageio pillow natsort glob2 scipy scikit-learn scikit-image pexpect -y
 
@@ -124,7 +124,7 @@ bash scripts/run_kitti_rain.sh
 Please direct over to the [rain-rendering](https://github.com/astra-vision/rain-rendering) GitHub page for more information.
 
 ### Night, Dawn & Dusk
-We first copy the repo from [CoMoGAN](https://github.com/astra-vision/CoMoGAN), we then create a file inside CoMoGAN-main called logs and place pretrained weights provided by CoMoGAN inside (CoMoGAN-main/logs/pretrained/...).
+We first copy the repository from [CoMoGAN](https://github.com/astra-vision/CoMoGAN), we then create a file inside CoMoGAN-main called logs and place pretrained weights provided by CoMoGAN inside (CoMoGAN-main/logs/pretrained/...).
 Now we must add the following code to line 13 in CoMoGAN-main/data/base_dataset.py.
 ```
 import logging
