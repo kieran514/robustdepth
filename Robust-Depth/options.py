@@ -275,7 +275,11 @@ class MonodepthOptions:
         # EVALUATION options
         self.parser.add_argument("--eval_stereo",
                                  help="if set evaluates in stereo mode",
-                                 action="store_false")
+                                 action="store_true")
+        self.parser.add_argument("--robust_test",
+                                 help="if set evaluates using robust images",
+                                 action="store_true")
+
         self.parser.add_argument("--eval_mono",
                                  help="if set evaluates in mono mode",
                                  action="store_true")
@@ -324,7 +328,18 @@ class MonodepthOptions:
                                  help="saved error figure name",
                                  type=str,
                                  default='diff')             
-     
+        self.parser.add_argument("--robust_augment",
+                                 help="The augmented scene variant",
+                                 type=str,
+                                 choices=['blur', 'defocus_blur', 'elastic_transform', 'fog', 'fog+night', 
+                                 'frost', 'gaussian_noise', 'glass_blur', 'impulse_noise', 'jpeg_compression', 
+                                 'night', 'pixelate', 'rain', 'rain+fog', 'rain+fog+night', 'rain+night', 'shot_noise', 
+                                 'snow', 'zoom_blur', 'color', 'dusk', 'dawn', 'ground_snow', 'dawn+rain', 'dusk+rain', 
+                                 'dusk+fog', 'dawn+fog', 'dawn+rain+fog', 'dusk+rain+fog', 'greyscale', 'R', 'G', 'B'])
+        self.parser.add_argument("--foggy",
+                                 help="use foggy for cityscape ",
+                                 action="store_true")
+
         # Export warped img
         self.parser.add_argument('--export',
                                  action='store_true',
