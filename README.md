@@ -244,25 +244,35 @@ We provide the evaluation for the KITTI dataset with ResNet18 models.
 ### KITTI 
 
 ```
-python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} --eval_mono --data_path data/KITTI_RAW
+python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} --eval_mono --data_path data/KITTI_RAW --eval_split eigen
+```
+### KITTI Benchmark
+
+```
+python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} --eval_mono --data_path data/KITTI_RAW --eval_split eigen_benchmark
 ```
 
 ### KITTI Robust
 
 ```
-python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --robust_test
+python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} --eval_mono --data_path data/KITTI_RAW --eval_split eigen --robust_test
 ```
 
 ### KITTI Benchmark Robust
 
 ```
-python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --robust_test --eval_split eigen_benchmark
+python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} --eval_mono --data_path data/KITTI_RAW --eval_split eigen_benchmark --robust_test
 ```
 
 ### KITTI Robust specific
 
 ```
-python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --robust_test --robust_augment blur
+python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} --eval_mono --data_path data/KITTI_RAW --eval_split eigen --robust_test --robust_augment blur
+```
+### KITTI Benchmark Robust specific
+
+```
+python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} --eval_mono --data_path data/KITTI_RAW --eval_split eigen_benchmark --robust_test --robust_augment blur
 ```
 
 ## Evaluation (ViT)
