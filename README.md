@@ -132,6 +132,7 @@ logger = logging.getLogger(__name__)
 ```
 Next, run the comogan.sh script to create Night, Dawn and Dusk augmentations on the clear and rain images.
 ```
+conda activate robustdepth
 bash scripts/comogan.sh 
 ```
 Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) GitHub page for more information.
