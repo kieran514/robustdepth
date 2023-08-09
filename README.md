@@ -88,7 +88,7 @@ bash scripts/run_rain_sim.sh
 ```
 Next, we must create a depth version of the KITTI dataset using pretrained weights from [Monodepth2](https://storage.googleapis.com/niantic-lon-static/research/monodepth2/mono%2Bstereo_640x192.zip). These pretrained weights are placed into the folder pretrained. Then we simply run this script.
 ```
-python depth_simple.py
+python scripts/depth_simple.py
 ```
 Now, we copy the repository from [rain-rendering](https://github.com/astra-vision/rain-rendering), Following the provided steps on their GitHub page, create the required environment: 
 ```
