@@ -210,11 +210,9 @@ bash scripts/fogOffical.sh
 We must prepare ground truth files for validation and training.
 ```
 python Robust-Depth/export_gt_depth.py --data_path data/KITTI_RAW --split eigen
-python Robust-Depth/export_gt_depth.py --data_path data/KITTI_RAW --split eigen_robust
 python Robust-Depth/export_gt_depth.py --data_path KITTI_RAW --split eigen_zhou
 # The final two can be ignored for now
 python Robust-Depth/export_gt_depth.py --data_path KITTI_RAW --split eigen_benchmark
-python Robust-Depth/export_gt_depth.py --data_path KITTI_RAW --split eigen_benchmark_robust
 ```
 
 ## Training
