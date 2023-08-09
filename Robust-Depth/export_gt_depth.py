@@ -29,7 +29,7 @@ def export_gt_depths_kitti():
                         help='which split to export gt from',
                         required=True,
                         choices=["eigen", "eigen_benchmark", "eigen_zhou", "nuScenes_test", "nuScenes_val", "nuScenes_test_night",
-                                "cloudy", "foggy", "rainy", "sunny"]])
+                                "cloudy", "foggy", "rainy", "sunny"])
     opt = parser.parse_args()
 
     #eigen_zhou represents validation splits
