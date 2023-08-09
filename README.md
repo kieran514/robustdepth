@@ -238,16 +238,13 @@ Finally, as Robust-Depth can have many further applications, we provide a simple
 5. Inside Robust-Depth/datasets/mono_dataset.py, add 'NIR':self.do_NIR_aug to line 303 (where 'NIR' is the augmented images folder name)
 6. Now inside the Robust-Depth/experiments/train_all.sh split add --do_NIR (removing other augmentations if you wish) and proceed with training
 
-## Evaluation
-We provide the evaluation for the KITTI dataset. To create the necessary ground truth for the KITTI dataset 
-
-### Testing
-Evaluation for Cityscape Foggy, DrivingStereo and NuScenes-Night coming soon. 
+## Evaluation (ResNet18)
+We provide the evaluation for the KITTI dataset with ResNet18 models. 
 
 ### KITTI 
 
 ```
-python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory}
+python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} --eval_mono --data_path data/KITTI_RAW
 ```
 
 ### KITTI Robust
@@ -268,6 +265,37 @@ python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights
 python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --robust_test --robust_augment blur
 ```
 
+## Evaluation (ViT)
+We provide the evaluation for the KITTI dataset with ViT models. First, download the MonoViT repository to Robust-Depth-main then run the following commands for evaluation. 
+
+### KITTI 
+
+```
+python MonoVit-main/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory}
+```
+
+### KITTI Robust
+
+```
+python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --robust_test
+```
+
+### KITTI Benchmark Robust
+
+```
+python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --robust_test --eval_split eigen_benchmark
+```
+
+### KITTI Robust specific
+
+```
+python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --robust_test --robust_augment blur
+```
+
+
+
+#### Testing
+Evaluation for Cityscape Foggy, DrivingStereo and NuScenes-Night coming soon. 
 
 
 
