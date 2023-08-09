@@ -12,9 +12,9 @@ from pyquaternion import Quaternion
 from utils import readlines
 from kitti_utils import generate_depth_map
 import os.path as osp
-from datasets.nuscenes.utils.geometry_utils import view_points, box_in_image, BoxVisibility, transform_matrix
-from datasets.nuscenes.nuscenes import NuScenes
-from datasets.nuscenes.utils.data_classes import LidarPointCloud, RadarPointCloud, Box
+# from datasets.nuscenes.utils.geometry_utils import view_points, box_in_image, BoxVisibility, transform_matrix
+# from datasets.nuscenes.nuscenes import NuScenes
+# from datasets.nuscenes.utils.data_classes import LidarPointCloud, RadarPointCloud, Box
 
 def export_gt_depths_kitti():
 
