@@ -209,9 +209,7 @@ bash scripts/fogOffical.sh
 
 The models can be trained on the KITTI dataset by running: 
 ```
-cd Robust-Depth
-
-bash experiments/train_all.sh
+bash Robust-Depth/experiments/train_all.sh
 ```
 The hyperparameters are defined in the script file and set at their defaults as stated in the paper.
 
