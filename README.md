@@ -205,6 +205,16 @@ bash scripts/fogOffical.sh
 | [`ViT`](https://drive.google.com/drive/folders/1oKT2oAPp-7altFTvPKR2d7FdgXN9xMG3?usp=sharing)          | 0.100 | 0.114 | 640 x 192                | ViT        |
 | [`Resnet18`](https://drive.google.com/drive/folders/1QSHZjOk6Ufw52BGjJmuxV7PJQNisH5Kk?usp=sharing)        | 0.115 | 0.133 | 640 x 192                |  Resnet18          |
 
+##KITTI Ground Truth 
+
+We must prepare ground truth files for validation and training.
+```
+python Robust-Depth/export_gt_depth.py --data_path data/KITTI_RAW --split eigen
+python Robust-Depth/export_gt_depth.py --data_path data/KITTI_RAW --split eigen_robust
+python Robust-Depth/export_gt_depth.py --data_path KITTI_RAW --split eigen_zhou
+python Robust-Depth/export_gt_depth.py --data_path KITTI_RAW --split eigen_benchmark
+```
+
 ## Training
 
 The models can be trained on the KITTI dataset by running: 
