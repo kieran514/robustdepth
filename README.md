@@ -107,7 +107,6 @@ depth = cv2.resize(depth, (bg.shape[1], bg.shape[0]))
 Also, replace line 209 with the below code:
 ```
 out_dir = os.path.join(out_seq_dir, 'image_02/', weather)
-
 ```
 Additionally, replace line 324 with; 
 ```
