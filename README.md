@@ -68,6 +68,7 @@ mv Automold--Road-Augmentation-Library/ Automold
 python scripts/snow_motion.py 
 ```
 Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) GitHub page for more information.
+
 **~10 mins**
 
 ### Corruptions & RGB-Grey
@@ -76,6 +77,7 @@ We execute the corruption.py script provided in the scripts folder to create ima
 python scripts/corruption.py 
 ```
 Please direct over to the [robustness](https://github.com/hendrycks/robustness) GitHub page for more information.
+
 **~3 hours**
 
 ### Rain
@@ -132,6 +134,7 @@ From here you can run this script. (max_thread on line 176 (inside main_threaded
 bash scripts/run_kitti_rain.sh
 ```
 Please direct over to the [rain-rendering](https://github.com/astra-vision/rain-rendering) GitHub page for more information.
+
 **~+24 hours**
 ### Night, Dawn & Dusk
 We first clone the repository from [CoMoGAN](https://github.com/astra-vision/CoMoGAN), we then create a file inside CoMoGAN called logs and place pretrained weights provided by CoMoGAN inside (CoMoGAN/logs/pretrained/).
@@ -150,6 +153,7 @@ conda activate robustdepth
 bash scripts/comogan.sh 
 ```
 Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) GitHub page for more information.
+
 **~20 hours**
 
 ### Fog 
