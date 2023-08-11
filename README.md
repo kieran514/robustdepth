@@ -116,7 +116,7 @@ and comment out lines 457 and 468.
 
 Finally, you will need particles as provided by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have provided the particle files (in the required order) which should be extracted in /rain-rendering-master/data/particles/ [found here](https://drive.google.com/file/d/1-nmBojZDz_-FXkUbreIyKOQlxuBeVLBp/view?usp=drive_link).
 
-From here you can run this script. (max_thread on line 176 is set to 10, change this if you wish)
+From here you can run this script. (max_thread on line 176 (inside main_threaded.py) is set to 10, change this if you wish)
 ```
 bash scripts/run_kitti_rain.sh
 ```
