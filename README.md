@@ -60,6 +60,7 @@ Here, we have the flexibility to create any augmentations we desire before comme
 ### Motion Blur & Snow
 Firstly, we need to download the repository from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. After downloading, rename the folder "Automold--Road-Augmentation-Library-master" to simply "Automold." Next, proceed to execute the "snow_motion.py" script located in the scripts folder. This will generate motion blur and snow augmentations.
 ```
+git clone https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library
 python scripts/snow_motion.py 
 ```
 Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) GitHub page for more information.
