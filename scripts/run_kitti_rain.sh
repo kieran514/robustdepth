@@ -1,5 +1,5 @@
 
-cd rain-rendering-master
+cd rain-rendering
 
 python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 4 \
 --output ../data/ --sequence 2011_09_26/2011_09_26_drive_0001_sync --scene_threaded --frame_end 108 --frame_start 0 --scenes_per_thread 1
