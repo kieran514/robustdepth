@@ -58,9 +58,10 @@ find data/KITTI_RAW/ -name '*.png' | parallel 'convert -quality 92 -sampling-fac
 Here, we have the flexibility to create any augmentations we desire before commencing the training process. Once we have generated the augmented data using the steps outlined below, we can proceed to train using only those augmented images.
 
 ### Motion Blur & Snow
-Firstly, we need to download the repository from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. After downloading, rename the folder "Automold--Road-Augmentation-Library-master" to simply "Automold." Next, proceed to execute the "snow_motion.py" script located in the scripts folder. This will generate motion blur and snow augmentations.
+Firstly, we need to download the repository from [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) into the main branch. After downloading, rename the folder "Automold--Road-Augmentation-Library" to simply "Automold". Next, proceed to execute the "snow_motion.py" script located in the scripts folder. This will generate motion blur and snow augmentations.
 ```
 git clone https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library
+mv Automold--Road-Augmentation-Library/ Automold
 python scripts/snow_motion.py 
 ```
 Please direct over to the [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library) GitHub page for more information.
@@ -73,7 +74,11 @@ python scripts/corruption.py
 Please direct over to the [robustness](https://github.com/hendrycks/robustness) GitHub page for more information.
 
 ### Rain
-First, we create a rainy version of the KITTI dataset using a GAN. We download CycleGAN from the repository [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). Here we trained a CycleGAN model to convert clear to rainy using the NuScenes dataset. We have provided the pretrained model for ease of use [RainGAN](https://drive.google.com/drive/folders/1Yb67rvfTyBfwpcoRx98Ubw_KlGPLV3jc?usp=drive_link) which needs to be placed inside pytorch-CycleGAN-and-pix2pix-master/checkpoints/rain_cyclegan/. Before we continue, please locate pytorch-CycleGAN-and-pix2pix-master/util/visualizer.py and add the following if statement on line 41 (indent until line 50). 
+First, we create a rainy version of the KITTI dataset using a GAN. We download CycleGAN from the repository [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix). 
+```
+git clone https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
+```
+Here we trained a CycleGAN model to convert clear to rainy using the NuScenes dataset. We have provided the pre-trained model for ease of use [RainGAN](https://drive.google.com/drive/folders/1Yb67rvfTyBfwpcoRx98Ubw_KlGPLV3jc?usp=drive_link) which needs to be placed inside pytorch-CycleGAN-and-pix2pix/checkpoints/rain_cyclegan/. Before we continue, please locate pytorch-CycleGAN-and-pix2pix/util/visualizer.py and add the following if statement on line 41 (indent until line 50). 
 ```
 if label != 'real':
 ```
@@ -85,11 +90,11 @@ Using this model and the script provided, we create a rainy version of the KITTI
 ```
 bash scripts/run_rain_sim.sh 
 ```
-Next, we must create a depth version of the KITTI dataset using pretrained weights from [Monodepth2](https://storage.googleapis.com/niantic-lon-static/research/monodepth2/mono%2Bstereo_640x192.zip). These pretrained weights are placed into the folder pretrained. Then we simply run this script.
+Next, we must create a depth version of the KITTI dataset using pre-trained weights from [Monodepth2](https://storage.googleapis.com/niantic-lon-static/research/monodepth2/mono%2Bstereo_640x192.zip). These pre-trained weights are placed into the folder "pretrained". Then we simply run this script.
 ```
 python scripts/depth_simple.py
 ```
-Now, we copy the repository from [rain-rendering](https://github.com/astra-vision/rain-rendering), Following the provided steps on their GitHub page, create the required environment: 
+Now, we copy the repository from [rain-rendering](https://github.com/astra-vision/rain-rendering). Following the provided steps on their GitHub page, create the required environment: 
 ```
 conda create --name py36_weatheraugment python=3.6 opencv numpy matplotlib tqdm imageio pillow natsort glob2 scipy scikit-learn scikit-image pexpect -y
 
