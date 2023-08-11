@@ -1,4 +1,4 @@
-# Self-supervised Monocular Depth Estimation: Let's Talk About The Weather
+https://github.com/astra-vision/rain-rendering# Self-supervised Monocular Depth Estimation: Let's Talk About The Weather
 
 
  >**Self-supervised Monocular Depth Estimation: Let's Talk About The Weather
@@ -129,8 +129,11 @@ bash scripts/run_kitti_rain.sh
 Please direct over to the [rain-rendering](https://github.com/astra-vision/rain-rendering) GitHub page for more information.
 
 ### Night, Dawn & Dusk
-We first copy the repository from [CoMoGAN](https://github.com/astra-vision/CoMoGAN), we then create a file inside CoMoGAN-main called logs and place pretrained weights provided by CoMoGAN inside (CoMoGAN-main/logs/pretrained/).
-Now we must add the following code to line 13 in CoMoGAN-main/data/base_dataset.py.
+We first clone the repository from [CoMoGAN](https://github.com/astra-vision/CoMoGAN), we then create a file inside CoMoGAN called logs and place pretrained weights provided by CoMoGAN inside (CoMoGAN/logs/pretrained/).
+```
+git clone https://github.com/astra-vision/rain-rendering
+```
+Now we must add the following code to line 13 in CoMoGAN/data/base_dataset.py.
 ```
 import logging
 logging.basicConfig(level=logging.INFO)
