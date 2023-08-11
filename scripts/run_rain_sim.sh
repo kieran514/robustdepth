@@ -1,5 +1,5 @@
 
-cd pytorch-CycleGAN-and-pix2pix-master
+cd pytorch-CycleGAN-and-pix2pix
 
 python test.py \
 --dataroot ../data/KITTI_RAW/2011_09_26/2011_09_26_drive_0028_sync/image_02/data \
