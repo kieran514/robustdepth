@@ -43,7 +43,7 @@ def seed_worker(worker_id):
 class Trainer:
     def __init__(self, options):
         self.opt = options
-        wandb.init(project='')
+        wandb.init(project='ROBUSTDEPTH')
         self.log_path = os.path.join(self.opt.log_dir, self.opt.model_name)
 
         # checking height and width are multiples of 32
@@ -64,7 +64,6 @@ class Trainer:
         assert self.opt.frame_ids[0] == 0, "frame_ids must start with 0"
         assert len(self.opt.frame_ids) > 1, "frame_ids must have more than 1 frame specified"
 
-        # check the frames we need the dataloader to load
         frames_to_load = self.opt.frame_ids.copy()
 
         print('Loading frames: {}'.format(frames_to_load))
@@ -77,7 +76,6 @@ class Trainer:
             self.models["depth"] = networks.DepthDecoder()
             self.models["depth"].to(self.device)
         else:
-            # MODEL SETUP ###########################################################################
             self.models["encoder"] = networks.ResnetEncoder(
                 self.opt.num_layers, self.opt.weights_init == "pretrained")
             self.models["encoder"].to(self.device)
@@ -85,7 +83,6 @@ class Trainer:
             self.models["depth"] = networks.DepthDecoder(
                 self.models["encoder"].num_ch_enc, self.opt.scales)
             self.models["depth"].to(self.device)
-            #####################################################################################################################################################
 
             self.parameters_to_train += list(self.models["encoder"].parameters())
 
@@ -110,12 +107,10 @@ class Trainer:
             self.params = [ {
             "params":self.parameters_to_train, 
             "lr": 1e-4
-            #"weight_decay": 0.01
             },
             {
             "params": list(self.models["encoder"].parameters()), 
            "lr": 5e-5
-            #"weight_decay": 0.01
             } ]
             self.model_optimizer = optim.AdamW(self.params)
             self.model_lr_scheduler = optim.lr_scheduler.ExponentialLR(self.model_optimizer, 0.9)
@@ -268,7 +263,6 @@ class Trainer:
             self.step = self.epoch * (self.len_train_dataset // self.opt.batch_size)
             for _ in range(start):
                 self.model_lr_scheduler.step()
-            # self.val()
         else:
             self.epoch = 0
             self.step = 0
@@ -549,7 +543,7 @@ class Trainer:
             if self.opt.teacher:
                 reprojection_hint_loss = torch.cat(reprojection_hint_losses, 1)
 
-            if not self.opt.disable_automasking: # for stationary objects or static camera or low texture area
+            if not self.opt.disable_automasking: 
                 identity_reprojection_losses = []
                 for frame_id in self.opt.frame_ids[1:]:
                     if self.opt.teacher:
@@ -655,8 +649,6 @@ class Trainer:
         loss = torch.log(torch.abs(target - pred) + 1)
         loss = loss * loss_mask
         loss = loss.sum() / (loss_mask.sum() + 1e-7)
-        ######### NEW ############
-        # loss = loss.sum() / (loss_mask[loss_mask>0].sum() + 1e-7)
 
         return loss
 
@@ -673,7 +665,6 @@ class Trainer:
                 n, scale = k
                 origional = outputs[(n, scale)] 
                 individual = []
-                # pdb.set_trace()
                 for i in range(self.opt.batch_size):
                     if do_scale[i] == True:
                         resizer = inputs["resize", scale]
@@ -749,7 +740,7 @@ class Trainer:
     def compute_depth_losses(self, inputs, outputs, losses, idx, kitti_idx, city_idx, nu_idx, accumulate=False):
         """Compute depth metrics, to allow monitoring during training
 
-        On the contaray to Monodepth2 we are only using a batch of 1 therefore we have a more
+        Contrary to Monodepth2 we are only using a batch of 1 therefore we have a more
         accurate of validation 
         """
         min_depth = 1e-3
@@ -818,7 +809,7 @@ class Trainer:
                 wandb.log({"{}_{}".format(mode, l): v}, step=self.step)
                 writer.add_scalar("{}".format(l), v, self.step)
 
-        for j in range(min(4, BS)):  # write a maxmimum of four images
+        for j in range(min(4, BS)):  # write a maximum of four images
             s = 0  # log only max scale
             for frame_id in frameIDs:
                 if mode == 'robust_val':
