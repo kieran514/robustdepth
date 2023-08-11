@@ -94,8 +94,10 @@ Next, we must create a depth version of the KITTI dataset using pre-trained weig
 ```
 python scripts/depth_simple.py
 ```
-Now, we copy the repository from [rain-rendering](https://github.com/astra-vision/rain-rendering). Following the provided steps on their GitHub page, create the required environment: 
+Now, we clone the repository from [rain-rendering](https://github.com/astra-vision/rain-rendering). Following the provided steps on their GitHub page, create the required environment: 
 ```
+git clone https://github.com/astra-vision/rain-rendering
+
 conda create --name py36_weatheraugment python=3.6 opencv numpy matplotlib tqdm imageio pillow natsort glob2 scipy scikit-learn scikit-image pexpect -y
 
 conda activate py36_weatheraugment
@@ -104,7 +106,7 @@ pip install pyclipper imutils
 ```
 Download the Columbia Uni. [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip) and extract files in 3rdparty/rainstreakdb
 
-From here we employ that you place our KITTI_RAW.py (inside scripts folder) file into rain-rendering-master/config/. Now add the following line of code to line 361 in rain_rendering-master/common/generator.py
+From here we employ that you place our KITTI_RAW.py (inside scripts folder) file into rain-rendering/config/. Now add the following line of code to line 361 in rain_rendering/common/generator.py
 ```
 depth = cv2.resize(depth, (bg.shape[1], bg.shape[0]))
 ```
@@ -118,7 +120,7 @@ out_rainy_path = os.path.join(out_dir, '{}.png'.format(file_name[:-4]))
 ```
 and comment out lines 457 and 468.
 
-Finally, you will need particles as provided by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have provided the particle files (in the required order) which should be extracted in /rain-rendering-master/data/particles/ [found here](https://drive.google.com/file/d/1-nmBojZDz_-FXkUbreIyKOQlxuBeVLBp/view?usp=drive_link).
+Finally, you will need particles as provided by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have provided the particle files (in the required order) which should be extracted in /rain-rendering/data/particles/ [found here](https://drive.google.com/file/d/1-nmBojZDz_-FXkUbreIyKOQlxuBeVLBp/view?usp=drive_link).
 
 From here you can run this script. (max_thread on line 176 (inside main_threaded.py) is set to 10, change this if you wish)
 ```
