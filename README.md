@@ -101,7 +101,7 @@ Next, we must create a depth version of the KITTI dataset using pre-trained weig
 ```
 python scripts/depth_simple.py
 ```
-Now, we clone the repository from [rain-rendering](https://github.com/astra-vision/rain-rendering). Following the provided steps on their GitHub page, create the required environment: 
+Now, we clone the repository from [rain-rendering](https://github.com/astra-vision/rain-rendering). Following the provided steps on their [GitHub page](https://github.com/astra-vision/rain-rendering), create the required environment: 
 ```
 git clone https://github.com/astra-vision/rain-rendering
 
