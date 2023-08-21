@@ -304,6 +304,9 @@ Evaluation for Cityscape Foggy, DrivingStereo and NuScenes-Night coming soon.
 
 * [Monodepth2](https://github.com/nianticlabs/monodepth2) (ICCV 2019)
 * [MonoViT](https://github.com/zxcqlf/MonoViT) 
-
-
+* [Rain-Rendering](https://github.com/astra-vision/rain-rendering)
+* [CoMoGAN](https://github.com/astra-vision/CoMoGAN)
+* [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix)
+* [robustness](https://github.com/hendrycks/robustness)
+* [AutoMold](https://github.com/UjjwalSaxena/Automold--Road-Augmentation-Library)
 
