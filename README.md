@@ -158,11 +158,11 @@ Please direct over to the [CoMoGAN](https://github.com/astra-vision/CoMoGAN) Git
 
 ### Fog 
 For fog generation, we have used a script strongly inspired by [rain-rendering](https://github.com/astra-vision/rain-rendering), which will create a foggy augmentation for rain, night, clear, dawn, dusk, dawn+rain, night+rain and dusk+rain images. As this script was personally provided by the authors of [rain-rendering](https://github.com/astra-vision/rain-rendering) we choose not to share it as we have not received permission.
-<!---```
+```
 bash scripts/fogOffical.sh 
 ```
 **~5 hours**
---->
+
 #### File Format
 ```
 ├── KITTI_RAW
