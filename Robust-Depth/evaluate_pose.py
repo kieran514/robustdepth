@@ -1,8 +1,3 @@
-# python vddepth/evaluate_pose.py --eval_split odom_9 --load_weights_folder /media/kieran/SSDNEW/logs/train_1/models/weights_best --data_path /media/kieran/SSDNEW/Base-Model/data/KITTI_RAW/odom --robust_test --robust_augment blur
-# python vddepth/evaluate_pose.py --eval_split odom_9 --load_weights_folder /media/kieran/SSDNEW/logs/train_1/models/weights_best --data_path /media/kieran/SSDNEW/Base-Model/data/KITTI_RAW/odom --robust_test 
-# python vddepth/evaluate_pose.py --eval_split odom_9 --load_weights_folder /media/kieran/ODD/logs/train_1/models/weights_15 --data_path /media/kieran/SSDNEW/Base-Model/data/KITTI_RAW/odom
-
-
 from __future__ import absolute_import, division, print_function
 
 import os
