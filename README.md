@@ -295,8 +295,22 @@ python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} 
 python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} --eval_mono --data_path data/KITTI_RAW --eval_split eigen_benchmark --robust_test --robust_augment blur
 ```
 
+### Out-Of-Distribution data
+
+#### DrivingStereo
+Download the "Different weathers" from the [DrivingStereo](https://drivingstereo-dataset.github.io/) into a folder called DrivingStereo. Specifically, download the depth-map-full-size and left-image-full-size. These extracted files should be placed inside of the weather condition folder, e.g. sunny. 
+
+Next, we create ground truth depth data for the sunny weather conditions (there are four choices sunny, rainy, cloudy and foggy):
+```
+python Robust-Depth/export_gt_depth.py --data_path /media/kieran/HDD/workspace/Robust-Depth-main/data/DrivingStereo --split sunny
+```
+Now we can run the evaluation:
+```
+python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder /media/kieran/HDD/workspace/Robust-Depth-main/pretrained/Resnet --data_path /media/kieran/HDD/workspace/Robust-Depth-main/data/DrivingStereo --eval_split sunny
+```
+
 ##### Testing
-Evaluation for Cityscape Foggy, DrivingStereo and NuScenes-Night coming soon. 
+Evaluation for Cityscape Foggy and NuScenes-Night coming soon. 
 
 
 
