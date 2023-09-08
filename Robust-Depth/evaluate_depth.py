@@ -1,10 +1,10 @@
-# python vddepth/evaluate_depth.py --eval_mono --load_weights_folder /media/kieran/ODD/logs/train_all/models/weights_24
-# python vddepth/evaluate_depth.py --eval_mono --load_weights_folder /media/kieran/SSDNEW/logs/train_1/models/weights_absrel91 --robust_test 
-# python vddepth/evaluate_depth.py --eval_mono --load_weights_folder /media/kieran/ODD/logs/train_all_fm_gone/models/weights_absrel89 --robust_test --robust_augment blur
-# python vddepth/evaluate_depth.py --eval_mono --load_weights_folder /media/kieran/ODD/logs/train_all_fm_gone/models/weights_absrel89 --robust_test --eval_split eigen_benchmark
-# python vddepth/evaluate_depth.py --eval_mono --load_weights_folder /media/kieran/ODD/logs/train_all/models/weights_24 --eval_split cityscape --data_path /media/kieran/SSDNEW/Base-Model/data/CS_RAW --foggy
-# python vddepth/evaluate_depth.py --eval_mono --load_weights_folder /media/kieran/ODD/logs/train_all_fm_gone/models/weights_best --data_path /media/kieran/SSDNEW/Base-Model/data/DrivingStereo --eval_split foggy
-# python vddepth/evaluate_depth.py --eval_mono --load_weights_folder /media/kieran/ODD/logs/train_all/models/weights_24 --data_path /media/kieran/SSDNEW/Base-Model/data/nuScenes_RAW --eval_split nuScenes_test_night
+# python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_path}
+# python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_path} --robust_test 
+# python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_path} --robust_test --robust_augment blur
+# python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_path} --robust_test --eval_split eigen_benchmark
+# python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_path} --data_path {CityScape_data_path} --eval_split cityscape --foggy
+# python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_path} --data_path {DrivingStereo_data_path} --eval_split foggy
+# python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_path} --data_path {NuScenes_data_path} --eval_split nuScenes_test_night
 
 from __future__ import absolute_import, division, print_function
 from torchvision.utils import save_image
