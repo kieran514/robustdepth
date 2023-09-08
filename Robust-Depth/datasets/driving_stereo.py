@@ -17,7 +17,7 @@ class DRIVINGSTEREO(MonoDataset):
         super(DRIVINGSTEREO, self).__init__(*args, **kwargs)
 
     def get_color(self, line, stereo_split):
-        color = self.loader(os.path.join(self.data_path, stereo_split, 'left-image-full-size', line))
+        color = self.loader(os.path.join(self.data_path, stereo_split, 'left-image-full-size', stereo_split, 'left-image-full-size', line))
 
         return color
 
