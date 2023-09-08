@@ -36,7 +36,7 @@ def export_gt_depths():
     current = os.getcwd()
     split_folder = os.path.join(current, "splits", opt.split)
 
-    if opt.split in ["eigen", "eigen_benchmark", "nuScenes_test"]:
+    if opt.split in ["eigen", "eigen_benchmark", "nuScenes_test", "cloudy", "foggy", "rainy", "sunny"]:
         lines = readlines(os.path.join(split_folder, "test_files.txt"))
     elif opt.split == "nuScenes_test_night":
         lines = readlines(os.path.join(split_folder, "night_lidar.txt"))
@@ -60,6 +60,8 @@ def export_gt_depths():
         elif opt.split == "eigen" or opt.split == "eigen_benchmark":
             folder, frame_id, _, type = line.split()
             frame_id = int(frame_id)
+        elif opt.split == "cloudy" or opt.split == "cloudy" or opt.split == "rainy" or opt.split == "sunny":
+            pass
         else:
             folder, frame_id, _ = line.split()
             frame_id = int(frame_id)
@@ -92,7 +94,7 @@ def export_gt_depths():
             gt_depth = get_depth(nusc, pointsensor_token, camsensor_token)
            
         elif opt.split == "sunny" or opt.split == "foggy" or opt.split == "rainy" or opt.split == "cloudy":
-            gt_depth_path = os.path.join(os.getcwd(),opt.data_path, opt.split, 'depth-map-full-size', line)
+            gt_depth_path = os.path.join(os.getcwd(),opt.data_path, opt.split, 'depth-map-full-size', opt.split, 'depth-map-full-size', line)
             gt_depth = np.array(pil.open(gt_depth_path)).astype(np.float32) / 256
             
             
