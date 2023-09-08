@@ -26,7 +26,7 @@ python3 Robust-Depth/train.py \
 --do_zoom --do_snow --do_frost --do_elastic --do_pixelate \
 --do_jpeg_comp --do_color --do_blur --do_night --do_rain \
 --do_scale --do_tiling --do_vertical --do_erase --do_flip \
---do_greyscale --do_ground_snow --do_dusk --do_dawn \
+--do_greyscale --do_ground_snow --do_dusk --do_dawn --do_fog \
 --R --G --B
 
 # --do_fog
