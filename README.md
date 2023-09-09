@@ -7,7 +7,9 @@
 
 
 
-https://github.com/kieran514/Robust-Depth/assets/51883968/1946b0c7-2166-4c7a-95e1-0038eb0acee8
+<p align="center">
+  <img src="assets/teaser.gif" alt="Robustness" width="600" />
+</p>
 
 If you find our work useful in your research, kindly consider citing our paper:
 
