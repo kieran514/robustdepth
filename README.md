@@ -302,11 +302,11 @@ Download the "Different weathers" from the [DrivingStereo](https://drivingstereo
 
 Next, we create ground truth depth data for the sunny weather conditions (there are four choices sunny, rainy, cloudy and foggy):
 ```
-python Robust-Depth/export_gt_depth.py --data_path /media/kieran/HDD/workspace/Robust-Depth-main/data/DrivingStereo --split sunny
+python Robust-Depth/export_gt_depth.py --data_path data/DrivingStereo --split sunny
 ```
 Now we can run the evaluation:
 ```
-python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder /media/kieran/HDD/workspace/Robust-Depth-main/pretrained/Resnet --data_path /media/kieran/HDD/workspace/Robust-Depth-main/data/DrivingStereo --eval_split sunny
+python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --data_path data/DrivingStereo --eval_split sunny
 ```
 
 ##### Testing
