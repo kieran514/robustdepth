@@ -8,7 +8,7 @@
 
 
 <p align="center">
-  <img src="assets/teaser.gif" alt="Robustness" width="600" />
+  <img src="assets/TextScene4.mp4" alt="Robustness" width="600" />
 </p>
 
 If you find our work useful in your research, kindly consider citing our paper:
