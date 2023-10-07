@@ -225,8 +225,8 @@ python scripts/fogRenderOffical.py
 
 | Model Name          | *Sunny* Abs_Rel | *Bad Weather* Abs_Rel | Model resolution  | Model  |
 |-------------------------|-------------------|--------------------------|-----------------|------|
-| [`ViT`](https://drive.google.com/drive/folders/1oKT2oAPp-7altFTvPKR2d7FdgXN9xMG3?usp=sharing)          | 0.100 | 0.114 | 640 x 192                | ViT        |
-| [`Resnet18`](https://drive.google.com/drive/folders/1QSHZjOk6Ufw52BGjJmuxV7PJQNisH5Kk?usp=sharing)        | 0.115 | 0.133 | 640 x 192                |  Resnet18          |
+| [`ViT`](https://drive.google.com/drive/folders/13vtwYM2OHu4iBl6fSpdxXyjFZiI7K8_b?usp=sharing)         | 0.100 | 0.114 | 640 x 192                | ViT        |
+| [`Resnet18`](https://drive.google.com/drive/folders/1x1dGzKhMY7k6Fq-47yU6Qa0bYtv7AgEH?usp=sharing)      | 0.115 | 0.133 | 640 x 192                |  Resnet18          |
 
 ## KITTI Ground Truth 
 
