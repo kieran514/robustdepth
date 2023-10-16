@@ -14,13 +14,13 @@
 If you find our work useful in your research, kindly consider citing our paper:
 
 ```
-@misc{saunders2023selfsupervised,
-      title={Self-supervised Monocular Depth Estimation: Let's Talk About The Weather}, 
-      author={Kieran Saunders and George Vogiatzis and Luis Manso},
-      year={2023},
-      eprint={2307.08357},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@InProceedings{Saunders_2023_ICCV,
+    author    = {Saunders, Kieran and Vogiatzis, George and Manso, Luis J.},
+    title     = {Self-supervised Monocular Depth Estimation: Let's Talk About The Weather},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2023},
+    pages     = {8907-8917}
 }
 ```
 
