@@ -87,7 +87,7 @@ First, we create a rainy version of the KITTI dataset using a GAN. We download C
 ```
 git clone https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
 ```
-Here we trained a CycleGAN model to convert clear to rainy using the NuScenes dataset. We have provided the pre-trained model for ease of use [RainGAN](https://drive.google.com/drive/folders/1Yb67rvfTyBfwpcoRx98Ubw_KlGPLV3jc?usp=drive_link) which needs to be placed inside pytorch-CycleGAN-and-pix2pix/checkpoints/rain_cyclegan/. Before we continue, please locate pytorch-CycleGAN-and-pix2pix/util/visualizer.py and add the following if statement on line 41 (indent until line 50). 
+Here we trained a CycleGAN model to convert clear to rainy using the NuScenes dataset. We have provided the pre-trained model for ease of use [RainGAN](https://drive.google.com/file/d/1ASzOoeX3UKAr_c2-Y_Rrt0en4QnQfI52/view?usp=sharing) which needs to be placed inside pytorch-CycleGAN-and-pix2pix/checkpoints/rain_cyclegan/. Before we continue, please locate pytorch-CycleGAN-and-pix2pix/util/visualizer.py and add the following if statement on line 41 (indent until line 50). 
 ```
 if label != 'real':
 ```
@@ -129,7 +129,7 @@ out_rainy_path = os.path.join(out_dir, '{}.png'.format(file_name[:-4]))
 ```
 and comment out lines 457 and 468.
 
-Finally, you will need particles as provided by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have provided the particle files (in the required order) which should be extracted in /rain-rendering/data/particles/ [found here](https://drive.google.com/file/d/1-nmBojZDz_-FXkUbreIyKOQlxuBeVLBp/view?usp=drive_link).
+Finally, you will need particles as provided by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have provided the particle files (in the required order) which should be extracted in /rain-rendering/data/particles/ [found here](https://drive.google.com/file/d/1Dkle1mFBUR2qKfamxoWZE88FoHmcUyzC/view?usp=sharing).
 
 From here you can run this script. (max_thread on line 176 (inside main_threaded.py) is set to 10, change this if you wish)
 ```
