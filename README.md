@@ -311,8 +311,10 @@ Now we can run the evaluation:
 python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --data_path data/DrivingStereo --eval_split sunny
 ```
 
-##### Testing
-Evaluation for Cityscape Foggy and NuScenes-Night coming soon. 
+#### Cityscape Foggy
+First download leftImg8bit_trainvaltest_foggy.zip from the [CityScape webist](https://www.cityscapes-dataset.com/downloads/)
+
+#### NuScenes-Night
 
 
 
