@@ -123,7 +123,8 @@ class CityscapesDataset(MonoDataset):
             image_path = os.path.join(self.data_path, folder, split, city + '_' + spec, frame_name + '_leftImg8bit' + self.img_ext)
 
         if foggy and split == "test":
-            image_path = os.path.join(self.data_path, folder, "fog_test", city, frame_name + '_leftImg8bit' + '_foggy_beta_0.02.png')
+            # image_path = os.path.join(self.data_path, folder, "fog_test", city, frame_name + '_leftImg8bit' + '_foggy_beta_0.02.png')
+            image_path = os.path.join(self.data_path, "leftImg8bit_foggy", split, city, frame_name + '_leftImg8bit' + '_foggy_beta_0.02.png')
 
         return image_path
     
