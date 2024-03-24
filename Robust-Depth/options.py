@@ -297,7 +297,7 @@ class MonodepthOptions:
                                  type=str,
                                  default="eigen_zhou",
                                  choices=["eigen", "eigen_benchmark", "eigen_zhou", "benchmark", "odom_9",
-                                          "odom_10", "cityscapes", "nuScenes_val", "sunny", "rainy", "foggy", "cloudy"],
+                                          "odom_10", "cityscape", "nuScenes_val", "sunny", "rainy", "foggy", "cloudy"],
                                  help="which split to run eval on")
         self.parser.add_argument("--save_pred_disps",
                                  help="if set saves predicted disparities",
