@@ -435,21 +435,6 @@ class MonoDataset(data.Dataset):
                 inputs.update(self.get_colors(folder, frame_index, side, do_flip, spec, augs = True))
             inputs["dataset"] = 1
 
-            for scale in range(self.num_scales):
-                K = self.load_intrinsics(folder, frame_index)
-                if do_scale:
-                    K[0, :] *= width_re // (2 ** scale)
-                    K[1, :] *= height_re // (2 ** scale)
-                    inv_K = np.linalg.pinv(K)
-                    inputs[("K", scale)] = torch.from_numpy(K)
-                    inputs[("inv_K", scale)] = torch.from_numpy(inv_K)
-                else:
-                    K[0, :] *= self.width // (2 ** scale)
-                    K[1, :] *= self.height // (2 ** scale)
-                    inv_K = np.linalg.pinv(K)
-                    inputs[("K", scale)] = torch.from_numpy(K)
-                    inputs[("inv_K", scale)] = torch.from_numpy(inv_K)
-
         elif type(self).__name__ == "KITTIRAWDataset" or type(self).__name__ == "KITTIOdomDataset":
             inputs["dataset"] = 0
             if self.is_robust_test:
