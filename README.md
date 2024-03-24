@@ -312,7 +312,7 @@ python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights
 ```
 
 #### Cityscape Foggy
-First download leftImg8bit_trainvaltest_foggy.zip from the [CityScape webist](https://www.cityscapes-dataset.com/downloads/) and unizp this in the data directory.
+First download leftImg8bit_trainvaltest_foggy.zip from the [CityScape Website](https://www.cityscapes-dataset.com/downloads/) and unizp this in the data directory.
 
 Thankfully ManyDepth provides the ground truth depth (see [ManyDepth](https://github.com/nianticlabs/manydepth?tab=readme-ov-file) at the bottom of the ''Pretrained weights and evaluation'' section of the GitHub page). These need to be extraced into splits\cityscape.
 
