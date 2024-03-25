@@ -297,7 +297,7 @@ python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} 
 python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} --eval_mono --data_path data/KITTI_RAW --eval_split eigen_benchmark --robust_test --robust_augment blur
 ```
 
-### Robust Testing Without augmented dataset creation
+## Robust Testing Without augmented dataset creation
 
 Here we provide a vairant of the KITTI dataset which allows you to do the above testing without creating the augmteted dataset, [KITTI Augmented Test](https://drive.google.com/file/d/1JGhPm3zcfR-OzIGV1e2OtyFchvZ8Yu1r/view?usp=sharing). We do not share the full augmated traning set due to the large size. 
 
@@ -310,7 +310,7 @@ python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} 
 The data is provided under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License, and all credit for the data goes to [KITTI](https://www.cvlibs.net/datasets/kitti/). An individual license is provided with the zipped data.
 
 
-### Out-Of-Distribution data
+## Out-Of-Distribution data
 
 #### DrivingStereo
 Download the "Different weathers" from the [DrivingStereo](https://drivingstereo-dataset.github.io/) into a folder called DrivingStereo. Specifically, download the depth-map-full-size and left-image-full-size. These extracted files should be placed inside of the weather condition folder, e.g. sunny. 
