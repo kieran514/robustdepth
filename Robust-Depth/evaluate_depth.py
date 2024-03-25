@@ -25,11 +25,9 @@ import pdb
 
 cv2.setNumThreads(0)  # This speeds up evaluation 5x on our unix systems (OpenCV 3.3.1)
 
-
 splits_dir = os.path.join("splits")
 
 STEREO_SCALE_FACTOR = 5.4
-
 
 def compute_errors(gt, pred):
     """Computation of error metrics between predicted and ground truth depths
@@ -51,7 +49,6 @@ def compute_errors(gt, pred):
 
     return abs_rel, sq_rel, rmse, rmse_log, a1, a2, a3
 
-
 def batch_post_process_disparity(l_disp, r_disp):
     """Apply the disparity post-processing method as introduced in Monodepthv1
     """
@@ -61,7 +58,6 @@ def batch_post_process_disparity(l_disp, r_disp):
     l_mask = (1.0 - np.clip(20 * (l - 0.05), 0, 1))[None, ...]
     r_mask = l_mask[:, :, ::-1]
     return r_mask * l_disp + l_mask * r_disp + (1.0 - l_mask - r_mask) * m_disp
-
 
 def evaluate(opt):
     """Evaluates a pretrained model using a specified test set
@@ -101,7 +97,7 @@ def evaluate(opt):
                                                      [0], 4, is_train=False, stereo_split=opt.eval_split)
         elif opt.eval_split == "nuScenes_test_night":
             from datasets.nuscenes import NuScenes
-            nusc = NuScenes(version='v1.0-trainval', dataroot='/media/kieran/SSDNEW/Base-Model/data/nuScenes_RAW', verbose=False)
+            nusc = NuScenes(version='v1.0-trainval', dataroot=dataroot=opt.data_path, verbose=False)
             dataset = datasets.NUSCENESEVAL(opt.data_path, filenames, encoder_dict['height'], encoder_dict['width'],
                                                      [0], 4, is_train=False, nusc=nusc)
         else:
@@ -112,13 +108,6 @@ def evaluate(opt):
 
         dataloader = DataLoader(dataset, 1, shuffle=False, num_workers=6,
                             pin_memory=True, drop_last=False)
-
-        # encoder = networks.ResnetEncoder(opt.num_layers, False)
-        # depth_decoder = networks.DepthDecoder(encoder.num_ch_enc)
-
-        # model_dict = encoder.state_dict()
-        # encoder.load_state_dict({k: v for k, v in encoder_dict.items() if k in model_dict})
-        # depth_decoder.load_state_dict(torch.load(decoder_path, map_location='cuda:0'))
 
         if not opt.ViT:
 
@@ -160,11 +149,6 @@ def evaluate(opt):
             n=0
             for data in tqdm.tqdm(dataloader):
                 input_color = data[("color", 0, 0)].to("cuda:0")
-                # pdb.set_trace()
-                input_color.shape
-
-                save_image(input_color, f'/media/kieran/SSDNEW/results/{n}.jpg')
-                n+=1
 
                 if opt.post_process:
                     # Post-processed results require each image to have two forward passes
