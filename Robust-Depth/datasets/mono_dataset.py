@@ -35,6 +35,7 @@ class MonoDataset(data.Dataset):
                  num_scales,
                  is_train=False,
                  robust_val=False,
+                 nusc=nusc
                  img_ext='.jpg',
                  mask_noise=False,
                  feat_warp=False,
@@ -73,13 +74,14 @@ class MonoDataset(data.Dataset):
         super(MonoDataset, self).__init__()
 
         self.data_path = data_path
-        self.nuscenes_data = "/media/kieran/SSDNEW/Base-Model/data/nuScenes_RAW"
         self.filenames = filenames
         self.height = height
         self.width = width
         self.num_scales = num_scales
         self.sensor = 'CAM_FRONT'
         self.stereo_split = stereo_split
+
+        self.nusc = nusc
 
         self.interp = T.InterpolationMode.LANCZOS
 
