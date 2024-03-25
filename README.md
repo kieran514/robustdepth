@@ -297,18 +297,17 @@ python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} 
 python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} --eval_mono --data_path data/KITTI_RAW --eval_split eigen_benchmark --robust_test --robust_augment blur
 ```
 
-## Robust Testing Without augmented dataset creation
+## Robust Testing Without Augmented Dataset Creation
 
-Here we provide a vairant of the KITTI dataset which allows you to do the above testing without creating the augmteted dataset, [KITTI Augmented Test](https://drive.google.com/file/d/1JGhPm3zcfR-OzIGV1e2OtyFchvZ8Yu1r/view?usp=sharing). We do not share the full augmated traning set due to the large size. 
+Here we provide a variant of the KITTI dataset, KITTI Augmented Test, which allows you to conduct the above testing without creating the augmented dataset. We do not share the full augmented training set due to its large size.
 
-First unziop this link and place the data into the data direcetory. 
+First, unzip this link and place the data into the data directory.
 
-Simply changingi the --data_path to data/KITTI_RAW_test  you can do the above tests on augmeted data. Below is an example:
+Simply change the --data_path to data/KITTI_RAW_test to conduct the above tests on augmented data. Below is an example:
 ```
 python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} --eval_mono --data_path data/KITTI_RAW_test --eval_split eigen --robust_test --robust_augment blur
 ```
 The data is provided under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License, and all credit for the data goes to [KITTI](https://www.cvlibs.net/datasets/kitti/). An individual license is provided with the zipped data.
-
 
 ## Out-Of-Distribution data
 
