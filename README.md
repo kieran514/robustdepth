@@ -322,7 +322,12 @@ python vddepth/evaluate_depth_MD2.py --eval_mono --load_weights_folder {weights_
 ```
 
 #### NuScenes-Night
+For this testing, we provide the test dataset itself with the ground truth for simpplciity. Additions have been made to the code to allow for these evalautions so make sure you are uop to date. First, download the NuScenes_test.zip (link) and extract this to the data path. This dataset is under the same licnce as defined in Nuscens (cite) Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License (“CC BY-NC-SA 4.0”). This is not meant for commercial use and all credit for the data goes to NuScnees (cite).
 
+Next download gt_depths.npz (link) and place these in splits/nuScenes_test_night. Now we can simply run:
+```
+python Robust-Depth/evaluate_depth.py --eval_mono --load_weights_folder {weights_directory} --data_path data/NuScenes_test/ --eval_split nuScenes_test_night
+```
 
 
 ## References
