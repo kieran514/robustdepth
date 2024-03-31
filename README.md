@@ -299,7 +299,7 @@ python Robust-Depth/evaluate_depth.py --load_weights_folder {weights_directory} 
 
 ## Robust Testing Without Augmented Dataset Creation
 
-Here we provide a variant of the KITTI dataset, KITTI Augmented Test, which allows you to conduct the above testing without creating the augmented dataset. We do not share the full augmented training set due to its large size.
+Here we provide a variant of the KITTI dataset, [KITTI Augmented Test](https://drive.google.com/file/d/1JGhPm3zcfR-OzIGV1e2OtyFchvZ8Yu1r/view?usp=sharing), which allows you to conduct the above testing without creating the augmented dataset. We do not share the full augmented training set due to its large size.
 
 First, unzip this link and place the data into the data directory.
 
