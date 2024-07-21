@@ -1,7 +1,7 @@
 # Self-supervised Monocular Depth Estimation: Let's Talk About The Weather (ICCV23)
 [![Website](assets/badge-website.svg)](https://kieran514.github.io/Robust-Depth-Project/)
 [![Paper](https://img.shields.io/badge/arXiv-PDF-b31b1b)](https://arxiv.org/abs/2307.08357)
-[![Paper](assets/youtube.svg)](https://www.youtube.com/watch?v=zGXzpJAWjcQ)****
+[![Paper](assets/youtube.svg)](https://www.youtube.com/watch?v=zGXzpJAWjcQ)
 
 
 <p align="center">
