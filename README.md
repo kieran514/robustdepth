@@ -1,10 +1,8 @@
 # Self-supervised Monocular Depth Estimation: Let's Talk About The Weather (ICCV23)
-
-
- >**Self-supervised Monocular Depth Estimation: Let's Talk About The Weather
- >
- >[[Arxiv](https://arxiv.org/pdf/2307.08357.pdf)] [[Project Page](https://kieran514.github.io/Robust-Depth-Project/)]
-
+[![Website](doc/badges/badge-website.svg)](https://kieran514.github.io/Robust-Depth-Project/)
+[![Paper](https://img.shields.io/badge/arXiv-PDF-b31b1b)](https://arxiv.org/abs/2307.08357)
+<!-- [![Hugging Face Model](https://img.shields.io/badge/🤗%20Hugging%20Face-Model-green)](https://kieran514.github.io/Robust-Depth-Project/) -->
+<!-- [![Website](https://img.shields.io/badge/Project-Website-1081c2)]([https://arxiv.org/abs/2312.02145) -->](https://arxiv.org/abs/2307.08357)) -->
 
 
 <p align="center">
