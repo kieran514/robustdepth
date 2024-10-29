@@ -126,7 +126,7 @@ out_rainy_path = os.path.join(out_dir, '{}.png'.format(file_name[:-4]))
 ```
 and comment out lines 457 and 468.
 
-Finally, you will need particles as provided by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have provided the particle files (in the required order) which should be extracted in /rain-rendering/data/particles/ [found here](https://drive.google.com/file/d/1Dkle1mFBUR2qKfamxoWZE88FoHmcUyzC/view?usp=sharing).
+Finally, you will need particles as provided by [rain streak database](https://www.cs.columbia.edu/CAVE/databases/rain_streak_db/databases.zip). For ease of use, I have provided the particle files (in the required order) which should be extracted in /rain-rendering/data/particles/ [found here](https://drive.google.com/file/d/1h3P_-g-vgJmnt7IkDlM7xjuN6MAqvCDX/view?usp=sharing).
 
 From here you can run this script. (max_thread on line 176 (inside main_threaded.py) is set to 10, change this if you wish)
 ```
