@@ -1,179 +1,107 @@
+#!/bin/bash
 
 cd rain-rendering
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 4 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0001_sync --scene_threaded --frame_end 108 --frame_start 0 --scenes_per_thread 1
+process_dataset() {
+    local date=$1
+    local dataset=$2
+    local intensity=$3
+    local frame_end=$4
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 110 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0002_sync --scene_threaded --frame_end 77 --frame_start 0 --scenes_per_thread 1
+    echo "Processing dataset: ${date}/${date}_drive_${dataset}_sync with intensity ${intensity}"
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 110 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0084_sync --scene_threaded --frame_end 383 --frame_start 0 --scenes_per_thread 1
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 110 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0093_sync --scene_threaded --frame_end 433 --frame_start 0 --scenes_per_thread 1
+    OMP_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 \
+        python main_threaded.py \
+        --dataset_root data/ \
+        --dataset KITTI_RAW \
+        --intensity $intensity \
+        --output data/ \
+        --sequence $date/$date"_drive_"$dataset"_sync" \
+        --scene_threaded \
+        --particles data/particles/ \
+        --frame_end $frame_end \
+        --frame_start 0 \
+        --scenes_per_thread 1
+}
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 200 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0005_sync --scene_threaded --frame_end 154 --frame_start 0 --scenes_per_thread 1
+# Process each dataset with its specific intensity and frame_end values
+echo "Starting rain rendering for all datasets..."
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 200 \
---output ../data/ --sequence 2011_09_28/2011_09_28_drive_0001_sync --scene_threaded --frame_end 106 --frame_start 0 --scenes_per_thread 1
+# Intensity 1-9
+process_dataset "2011_09_26" "0028" 1 430
+process_dataset "2011_09_29" "0026" 1 158
+process_dataset "2011_09_26" "0013" 2 144
+process_dataset "2011_09_26" "0001" 4 108
+process_dataset "2011_09_26" "0064" 5 570
+process_dataset "2011_09_26" "0046" 6 125
+process_dataset "2011_09_26" "0039" 8 395
+process_dataset "2011_09_26" "0017" 9 114
+process_dataset "2011_09_26" "0117" 9 660
+process_dataset "2011_09_30" "0020" 9 1104
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 200 \
---output ../data/ --sequence 2011_09_29/2011_09_29_drive_0071_sync --scene_threaded --frame_end 1059 --frame_start 0 --scenes_per_thread 1
+# Intensity 10-30
+process_dataset "2011_09_26" "0059" 10 373
+process_dataset "2011_09_26" "0015" 15 297
+process_dataset "2011_09_26" "0057" 15 361
+process_dataset "2011_09_26" "0113" 15 87
+process_dataset "2011_09_26" "0029" 25 430
+process_dataset "2011_09_30" "0033" 25 1594
+process_dataset "2011_09_26" "0009" 30 447
+process_dataset "2011_09_30" "0034" 30 1224
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 200 \
---output ../data/ --sequence 2011_09_30/2011_09_30_drive_0027_sync --scene_threaded --frame_end 1106 --frame_start 0 --scenes_per_thread 1
+# Intensity 31-60
+process_dataset "2011_09_26" "0106" 35 227
+process_dataset "2011_09_26" "0014" 45 314
+process_dataset "2011_09_26" "0011" 50 233
+process_dataset "2011_10_03" "0042" 50 1170
+process_dataset "2011_09_26" "0104" 55 312
+process_dataset "2011_09_30" "0018" 55 2762
+process_dataset "2011_10_03" "0034" 60 4663
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 30 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0009_sync --scene_threaded --frame_end 447 --frame_start 0 --scenes_per_thread 1
+# Intensity 61-90
+process_dataset "2011_09_26" "0061" 65 703
+process_dataset "2011_09_26" "0101" 65 936
+process_dataset "2011_09_29" "0004" 65 339
+process_dataset "2011_09_30" "0016" 65 279
+process_dataset "2011_09_26" "0079" 70 100
+process_dataset "2011_09_26" "0036" 75 803
+process_dataset "2011_09_26" "0096" 75 475
+process_dataset "2011_09_30" "0028" 75 5177
+process_dataset "2011_09_26" "0022" 85 800
+process_dataset "2011_09_26" "0023" 90 474
+process_dataset "2011_09_26" "0070" 90 420
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 30 \
---output ../data/ --sequence 2011_09_30/2011_09_30_drive_0034_sync --scene_threaded --frame_end 1224 --frame_start 0 --scenes_per_thread 1
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 50 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0011_sync --scene_threaded --frame_end 233 --frame_start 0 --scenes_per_thread 1
+# Intensity 91-110
+process_dataset "2011_09_26" "0060" 95 78
+process_dataset "2011_09_28" "0002" 95 376
+process_dataset "2011_09_26" "0020" 100 86
+process_dataset "2011_09_26" "0095" 100 268
+process_dataset "2011_10_03" "0027" 100 4544
+process_dataset "2011_09_26" "0002" 110 77
+process_dataset "2011_09_26" "0084" 110 383
+process_dataset "2011_09_26" "0093" 110 433
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 50 \
---output ../data/ --sequence 2011_10_03/2011_10_03_drive_0042_sync --scene_threaded --frame_end 1170 --frame_start 0 --scenes_per_thread 1
+# Intensity 111+
+process_dataset "2011_09_26" "0035" 120 131
+process_dataset "2011_09_26" "0051" 130 438
+process_dataset "2011_09_26" "0052" 140 78
+process_dataset "2011_10_03" "0047" 140 837
+process_dataset "2011_09_26" "0019" 160 481
+process_dataset "2011_09_26" "0091" 160 340
+process_dataset "2011_09_26" "0048" 170 22
+process_dataset "2011_09_26" "0087" 170 729
+process_dataset "2011_09_26" "0027" 180 188
+process_dataset "2011_09_26" "0086" 180 706
+process_dataset "2011_09_26" "0018" 190 270
+process_dataset "2011_09_26" "0005" 200 154
+process_dataset "2011_09_28" "0001" 200 106
+process_dataset "2011_09_29" "0071" 200 1059
+process_dataset "2011_09_30" "0027" 200 1106
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 2 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0013_sync --scene_threaded --frame_end 144 --frame_start 0 --scenes_per_thread 1
+# THE ONE THAT WAS MISSING
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 45 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0014_sync --scene_threaded --frame_end 314 --frame_start 0 --scenes_per_thread 1
+process_dataset "2011_09_26" "0056" 35 294
 
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 15 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0015_sync --scene_threaded --frame_end 297 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 15 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0057_sync --scene_threaded --frame_end 361 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 15 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0113_sync  --scene_threaded --frame_end 87 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 9 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0017_sync --scene_threaded --frame_end 114 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 9 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0117_sync --scene_threaded --frame_end 660 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 9 \
---output ../data/ --sequence 2011_09_30/2011_09_30_drive_0020_sync --scene_threaded --frame_end 1104 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 190 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0018_sync --scene_threaded --frame_end 270 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 160 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0019_sync --scene_threaded --frame_end 481 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 160 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0091_sync --scene_threaded --frame_end 340 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 100 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0020_sync --scene_threaded --frame_end 86 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 100 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0095_sync --scene_threaded --frame_end 268 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 100 \
---output ../data/ --sequence 2011_10_03/2011_10_03_drive_0027_sync --scene_threaded --frame_end 4544 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 85 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0022_sync --scene_threaded --frame_end 800 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 90 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0023_sync --scene_threaded --frame_end 474 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 90 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0070_sync --scene_threaded --frame_end 420 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 180 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0027_sync --scene_threaded --frame_end 188 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 180 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0086_sync --scene_threaded --frame_end 706 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 1 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0028_sync --scene_threaded --frame_end 430 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 1 \
---output ../data/ --sequence 2011_09_29/2011_09_29_drive_0026_sync --scene_threaded --frame_end 158 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 25 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0029_sync --scene_threaded --frame_end 430 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 25 \
---output ../data/ --sequence 2011_09_30/2011_09_30_drive_0033_sync --scene_threaded --frame_end 1594 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 120 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0035_sync --scene_threaded --frame_end 131 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 75 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0036_sync --scene_threaded --frame_end 803 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 75 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0096_sync --scene_threaded --frame_end 475 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 75 \
---output ../data/ --sequence 2011_09_30/2011_09_30_drive_0028_sync --scene_threaded --frame_end 5177 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 8 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0039_sync --scene_threaded --frame_end 395 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 6 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0046_sync --scene_threaded --frame_end 125 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 170 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0048_sync --scene_threaded --frame_end 22 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 170 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0087_sync --scene_threaded --frame_end 729 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 130 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0051_sync --scene_threaded --frame_end 438 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 140 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0052_sync --scene_threaded --frame_end 78 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 140 \
---output ../data/ --sequence 2011_10_03/2011_10_03_drive_0047_sync --scene_threaded --frame_end 837 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 35 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0106_sync --scene_threaded --frame_end 227 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 10 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0059_sync --scene_threaded --frame_end 373 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 95 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0060_sync --scene_threaded --frame_end 78 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 95 \
---output ../data/ --sequence 2011_09_28/2011_09_28_drive_0002_sync --scene_threaded --frame_end 376 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 65 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0061_sync --scene_threaded --frame_end 703 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 65 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0101_sync --scene_threaded --frame_end 936 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 65 \
---output ../data/ --sequence 2011_09_29/2011_09_29_drive_0004_sync --scene_threaded --frame_end 339 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 65 \
---output ../data/ --sequence 2011_09_30/2011_09_30_drive_0016_sync --scene_threaded --frame_end 279 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 5 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0064_sync --scene_threaded --frame_end 570 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 70 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0079_sync --scene_threaded --frame_end 100 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 55 \
---output ../data/ --sequence 2011_09_26/2011_09_26_drive_0104_sync --scene_threaded --frame_end 312 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 55 \
---output ../data/ --sequence 2011_09_30/2011_09_30_drive_0018_sync --scene_threaded --frame_end 2762 --frame_start 0 --scenes_per_thread 1
-
-python main_threaded.py --dataset_root ../data --dataset KITTI_RAW --intensity 60 \
---output ../data/ --sequence 2011_10_03/2011_10_03_drive_0034_sync --scene_threaded --frame_end 4663 --frame_start 0 --scenes_per_thread 1
+echo "All rain rendering completed successfully!"
